@@ -1,7 +1,15 @@
 /*eslint-disable */
 window.onload = function(){
 
-  var bulb, electron, nineVolt, resistor, glow, circuit, electronSpeed = 1000;
+  var bulb,
+    electron,
+    nineVolt,
+    resistor,
+    glow,
+    circuit,
+    electronTween1,
+    electronTween2,
+    electronSpeed = 500;
   var game = new Phaser.Game(800, 420, Phaser.CANVAS, 'ohms', {
       preload: preload,
       create: create,
@@ -50,7 +58,7 @@ window.onload = function(){
     game.add.existing(electron);
     electron.anchor.set(0.5);
 
-    electronTween = game.add.tween(electron).to({x: 300}, electronSpeed)
+    electronTween1 = game.add.tween(electron).to({x: 300}, electronSpeed)
       .to({y: 300}, electronSpeed)
       .to({x: 20}, electronSpeed)
       .to({y: 20}, electronSpeed)
@@ -68,7 +76,7 @@ window.onload = function(){
     game.add.existing(electron);
     electron.anchor.set(0.5);
 
-    electronTween = game.add.tween(electron).to({x: 20}, electronSpeed)
+    electronTween2 = game.add.tween(electron).to({x: 20}, electronSpeed)
       .to({y: 20}, electronSpeed)
       .to({x: 300}, electronSpeed)
       .to({y: 300}, electronSpeed)
@@ -161,6 +169,10 @@ window.onload = function(){
         if(circuit.isOn){
           circuit.turnOn();
         }
+
+      var newSpeed = electronSpeed * circuit.resistors.length;
+      electronTween2.updateTweenData('duration', newSpeed, -1);
+      electronTween1.updateTweenData('duration', newSpeed, -1);
     });
 
     var resistorButton = game.add.button(700, 40, 'button', function(){

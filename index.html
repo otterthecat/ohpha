@@ -1,11 +1,30 @@
 <!doctype html>
 <html>
     <head>
-        <meta charset="UTF-8" />
-        <title>Ohms Phaser</title>
-        <script src="../phaser/build/phaser.min.js"></script>
+      <meta charset="UTF-8" />
+      <title>Ohms Phaser</title>
+      <script src="../phaser/build/phaser.min.js"></script>
+
+      <style>
+        label, input, button {
+          display: block;
+        }
+
+        input, button {
+          margin: 0 0 15px;
+        }
+      </style>
     </head>
     <body>
+        <form>
+          <label for="current">What is the current (I = V / R)?</label>
+          <input type="text" name="current"/>
+          <label for="voltage">What is the voltage (V = I * R)?</label>
+          <input type="text" name="voltage" />
+          <label for="resistance">What is the resistance (R = V / I)?</label>
+          <input type="text" name="resistance" />
+          <button type="submit">Submit</button>
+        </form>
         <script src="components/circuit.js"></script>
         <script src="components/electron.js"></script>
         <script src="components/battery.js"></script>
