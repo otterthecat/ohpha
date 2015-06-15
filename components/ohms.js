@@ -135,6 +135,13 @@ window.onload = function(){
       'text': "Resistance is: 0"
     });
 
+    var textCurrent = new Text(Phaser, {
+      'game': game,
+      'x': game.world.centerX,
+      'y': 300,
+      'text': 'Current is: 0'
+    });
+
     var textWatts = new Text(Phaser, {
       'game': game,
       'x': game.world.centerX,
@@ -153,11 +160,14 @@ window.onload = function(){
     });
     bulb.onShine.add(function(brightness){
       glow.alpha = brightness;
-      textVoltage.setText("Voltage is: " + circuit.getStats().voltage);
-      textResistance.setText("Resistance is: " + circuit.getStats().resistance);
-      textWatts.setText('Watts is: ' + circuit.getStats().watts);
+      var stats = circuit.getStats();
+      textCurrent.setText('Current is: ' + stats.current);
+      textVoltage.setText("Voltage is: " + stats.voltage);
+      textResistance.setText("Resistance is: " + stats.resistance);
+      textWatts.setText('Watts is: ' + stats.watts);
     });
     bulb.onNoPower.add(function(){
+      textCurrent.setText('Current is: 0');
       textVoltage.setText("Voltage is: 0");
       textResistance.setText("Resistance is: 0");
       textWatts.setText('Watts is: 0');
