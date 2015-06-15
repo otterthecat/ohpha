@@ -39,7 +39,11 @@ Circuit.prototype.getVoltage = function(){
     totalVoltage += battery.volts;
   });
 
-  return this.isOn ? totalVoltage : 0;
+  // technically, I think if the circuit is off,
+  // it still has voltage, but no current.
+  // changing it for now, until I research it better
+  //return this.isOn ? totalVoltage : 0;
+  return totalVoltage;
 };
 
 Circuit.prototype.addResistor = function(resistor){

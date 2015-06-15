@@ -202,6 +202,10 @@ window.onload = function(){
       electronTween1.updateTweenData('duration', newSpeed, -1);
     });
 
+    // expose object for UI form
+    // TODO: find a better way to do this
+    window.circuit = circuit;
+
     var resistorButton = game.add.button(650, 40, 'button', function(){
       var newResistor = new Resistor(Phaser, {
         'game': game,
