@@ -2,7 +2,6 @@
 var Bulb = function(Phaser, options){
 
   Phaser.Sprite.call(this, options.game, options.x, options.y, options.key, options.frame);
-  options.game.load.image('bulb', 'circuit-stuff/bulb.png');
 
   this.voltageDrop = 2;
   this.forwardCurrent = 0.02;
