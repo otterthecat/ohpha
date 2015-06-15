@@ -64,9 +64,11 @@ window.onload = function(){
       .to({y: 20}, electronSpeed)
       .loop()
       .start();
+
+      electronTween1.pause();
   };
 
-    function createSecondElec(num){
+  function createSecondElec(num){
     var electron = new Electron(Phaser, {
       'game': game,
       'x': 300,
@@ -82,6 +84,8 @@ window.onload = function(){
       .to({y: 300}, electronSpeed)
       .loop()
       .start();
+
+      electronTween2.pause();
   };
 
   function createResistor(){
@@ -98,8 +102,12 @@ window.onload = function(){
   function togglePower(){
     if(circuit.isOn){
       circuit.turnOff();
+      electronTween1.pause();
+      electronTween2.pause();
     } else {
       circuit.turnOn();
+      electronTween1.resume();
+      electronTween2.resume();
     }
   };
 
