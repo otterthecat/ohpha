@@ -118,7 +118,7 @@ window.onload = function(){
     createResistor();
     createBulb();
 
-    var button = game.add.button(500, 100, 'button', togglePower);
+    var button = game.add.button(700, 150, 'button', togglePower);
     button.anchor.set(0.5);
 
     var textVoltage = new Text(Phaser, {
@@ -182,8 +182,17 @@ window.onload = function(){
       electronTween2.updateTweenData('duration', newSpeed, -1);
       electronTween1.updateTweenData('duration', newSpeed, -1);
     });
+    circuit.circuit_remove_resistor.add(function(){
+      if(circuit.isOn){
+        circuit.turnOn();
+      }
 
-    var resistorButton = game.add.button(700, 40, 'button', function(){
+      var newSpeed = electronSpeed * circuit.resistors.length;
+      electronTween2.updateTweenData('duration', newSpeed, -1);
+      electronTween1.updateTweenData('duration', newSpeed, -1);
+    });
+
+    var resistorButton = game.add.button(650, 40, 'button', function(){
       var newResistor = new Resistor(Phaser, {
         'game': game,
         'x': 150 + (circuit.resistors.length * 50),
@@ -195,6 +204,11 @@ window.onload = function(){
       newResistor.anchor.set(0.5);
     });
     resistorButton.anchor.set(0.5);
+
+    var removeButton = game.add.button(750, 40, 'button', function(){
+      circuit.removeResistor();
+    });
+    removeButton.anchor.set(0.5);
   };
 
   function update(){

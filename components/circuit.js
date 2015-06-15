@@ -9,6 +9,7 @@ var Circuit = function(Phaser){
   this.circuit_off = new Phaser.Signal();
   this.circuit_add_batery = new Phaser.Signal();
   this.circuit_add_resistor = new Phaser.Signal();
+  this.circuit_remove_resistor = new Phaser.Signal();
   this.circuit_set_resistance = new Phaser.Signal();
 };
 Circuit.prototype = Object.create(Phaser.Signal.prototype);
@@ -44,6 +45,15 @@ Circuit.prototype.getVoltage = function(){
 Circuit.prototype.addResistor = function(resistor){
   this.resistors.push(resistor);
   this.circuit_add_resistor.dispatch(this);
+  return this;
+};
+
+Circuit.prototype.removeResistor = function(){
+  if(this.resistors.length > 0){
+    var target = this.resistors.pop();
+    target.destroy();
+    this.circuit_remove_resistor.dispatch(this);
+  }
   return this;
 };
 
