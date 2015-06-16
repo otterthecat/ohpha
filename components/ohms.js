@@ -9,7 +9,6 @@ window.onload = function(){
     circuit,
     electronTween1,
     electronTween2,
-    emitter,
     electronSpeed = 400;
   var game = new Phaser.Game(800, 420, Phaser.CANVAS, 'ohms', {
       preload: preload,
@@ -41,6 +40,7 @@ window.onload = function(){
     bulb = new Bulb(Phaser,{
       'game': game,
       'key': 'bulb',
+      'emitterAsset': 'shard',
       'x': 300,
       'y': 140
     });
@@ -123,6 +123,12 @@ window.onload = function(){
     createSecondElec();
     createBattery();
     createResistor();
+
+    glow = game.add.graphics(0, 0);
+    glow.beginFill(0xFFFF00, 1);
+    glow.alpha = 0;
+    glow.drawCircle(300, 125, 100);
+
     createBulb();
 
     var button = game.add.button(700, 150, 'button', togglePower);
@@ -156,22 +162,11 @@ window.onload = function(){
       'text': 'Watts is: 0'
     });
 
-    glow = game.add.graphics(0, 0);
-    glow.beginFill(0xFFFF00, 1);
-    glow.alpha = 0;
-    glow.drawCircle(300, 125, 100);
-
-    emitter = game.add.emitter(300, 140, 100);
-
-    emitter.makeParticles('shard');
-    emitter.gravity = 100;
-
     bulb.onExplode.add(function(){
       textCurrent.setText('Bulb is overloaded!');
       textVoltage.setText('Bulb is overloaded');
       textResistance.setText('Bulb is overloaded');
       textWatts.setText('Bulb is overloaded');
-      emitter.start(true, 2000, null, 10);
     });
     bulb.onShine.add(function(brightness){
       glow.alpha = brightness;
