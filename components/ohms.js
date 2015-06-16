@@ -9,16 +9,14 @@ window.onload = function(){
     circuit,
     electronTween1,
     electronTween2,
-    electronSpeed = 500;
+    electronSpeed = 400;
   var game = new Phaser.Game(800, 420, Phaser.CANVAS, 'ohms', {
       preload: preload,
-      create: create,
-      update: update,
-      render: render
+      create: create
   });
 
   function preload(){
-    game.stage.backgroundColor = '#666';
+    game.stage.backgroundColor = '#fff';
     game.load.image('button', 'circuit-stuff/green-button.png');
     game.load.image('bulb', 'circuit-stuff/bulb.png');
     game.load.image('electron', 'circuit-stuff/electron.png');
@@ -52,16 +50,18 @@ window.onload = function(){
     var electron = new Electron(Phaser, {
       'game': game,
       'x': 20,
-      'y': 20,
+      'y': 100,
       'key': 'electron'
     });
     game.add.existing(electron);
     electron.anchor.set(0.5);
 
-    electronTween1 = game.add.tween(electron).to({x: 300}, electronSpeed)
-      .to({y: 300}, electronSpeed)
-      .to({x: 20}, electronSpeed)
-      .to({y: 20}, electronSpeed)
+    electronTween1 = game.add.tween(electron).to({y: 20}, electronSpeed)
+      .to({x: 300}, electronSpeed * 1.5)
+      .to({y: 300}, electronSpeed * 1.5)
+      .to({x: 120}, electronSpeed * 1.5)
+      .to({y: 100}, electronSpeed * 1.5)
+      .to({x: 20}, electronSpeed * 0.7)
       .loop()
       .start();
 
@@ -78,10 +78,12 @@ window.onload = function(){
     game.add.existing(electron);
     electron.anchor.set(0.5);
 
-    electronTween2 = game.add.tween(electron).to({x: 20}, electronSpeed)
+    electronTween2 = game.add.tween(electron).to({x: 120}, electronSpeed * 1.5)
+      .to({y: 100}, electronSpeed * 1.5)
+      .to({x: 20}, electronSpeed * 0.7)
       .to({y: 20}, electronSpeed)
-      .to({x: 300}, electronSpeed)
-      .to({y: 300}, electronSpeed)
+      .to({x: 300}, electronSpeed * 1.5)
+      .to({y: 300}, electronSpeed * 1.5)
       .loop()
       .start();
 
@@ -112,6 +114,7 @@ window.onload = function(){
   };
 
   function create(){
+    createWire(game);
     createFirstElec();
     createSecondElec();
     createBattery();
@@ -223,15 +226,6 @@ window.onload = function(){
       circuit.removeResistor();
     });
     removeButton.anchor.set(0.5);
-  };
-
-  function update(){
-
-  };
-
-  function render(){
-    // uncomment to view debug bounding box
-    // game.debug.body(car);
   };
 };
 /*eslint-enable */

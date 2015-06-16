@@ -17,7 +17,7 @@ Bulb.prototype.consume = function(circuit){
   var minResistor = (circuit.voltage - this.voltageDrop) / this.forwardCurrent;
   if (circuit.resistance <  minResistor){
     this.onExplode.dispatch(this);
-  } else if (circuit.voltage === 0) {
+  } else if (!circuit.poweredOn) {
     this.onNoPower.dispatch(this);
   } else {
     this.onShine.dispatch(minResistor / circuit.resistance);
