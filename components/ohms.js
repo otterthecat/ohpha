@@ -5,7 +5,6 @@ window.onload = function(){
     electron,
     nineVolt,
     resistor,
-    glow,
     circuit,
     electronTween1,
     electronTween2,
@@ -124,11 +123,6 @@ window.onload = function(){
     createBattery();
     createResistor();
 
-    glow = game.add.graphics(0, 0);
-    glow.beginFill(0xFFFF00, 1);
-    glow.alpha = 0;
-    glow.drawCircle(300, 125, 100);
-
     createBulb();
 
     var button = game.add.button(700, 150, 'button', togglePower);
@@ -169,7 +163,6 @@ window.onload = function(){
       textWatts.setText('Bulb is overloaded');
     });
     bulb.onShine.add(function(brightness){
-      glow.alpha = brightness;
       var stats = circuit.getStats();
       textCurrent.setText('Current is: ' + stats.current);
       textVoltage.setText("Voltage is: " + stats.voltage);
@@ -191,7 +184,6 @@ window.onload = function(){
       });
     circuit.circuit_off.add(function(){
       bulb.consume(circuit.getStats());
-      glow.alpha = 0;
     });
     circuit.circuit_add_resistor.add(function(){
         if(circuit.isOn){

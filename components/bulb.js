@@ -6,6 +6,12 @@ var Bulb = function(Phaser, options){
   this.voltageDrop = 2;
   this.forwardCurrent = 0.02;
 
+  this.glow = options.game.add.graphics(0, 0);
+  this.glow.beginFill(0xFFFF00, 1);
+  this.glow.alpha = 0;
+  this.glow.drawCircle(300, 125, 100);
+
+
   this.emitter = options.game.add.emitter(options.x, options.y, 100);
   this.emitter.makeParticles(options.emitterAsset);
   this.emitter.gravity = 100;
@@ -22,6 +28,7 @@ Bulb.prototype.consume = function(circuit){
   if (circuit.resistance <  minResistor){
     this.explode();
   } else if (!circuit.poweredOn) {
+    this.glow.alpha = 0;
     this.onNoPower.dispatch(this);
   } else {
     this.illuminate(minResistor / circuit.resistance);
@@ -29,6 +36,7 @@ Bulb.prototype.consume = function(circuit){
 };
 
 Bulb.prototype.illuminate = function(brightness){
+  this.glow.alpha = brightness;
   this.onShine.dispatch(brightness);
 };
 
