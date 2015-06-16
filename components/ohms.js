@@ -122,7 +122,6 @@ window.onload = function(){
     createSecondElec();
     createBattery();
     createResistor();
-
     createBulb();
 
     var button = game.add.button(700, 150, 'button', togglePower);
@@ -225,6 +224,27 @@ window.onload = function(){
       circuit.removeResistor();
     });
     removeButton.anchor.set(0.5);
+
+    var plus = new Text(Phaser, {
+      'game': game,
+      'x': 642,
+      'y': 28,
+      'text': '+'
+    });
+
+    var minus = new Text(Phaser, {
+      'game': game,
+      'x': 745,
+      'y': 28,
+      'text': '-'
+    });
+
+    var power = new Text(Phaser, {
+      'game': game,
+      'x': 660,
+      'y': 140,
+      'text': 'power'
+    });
   };
 };
 /*eslint-enable */
