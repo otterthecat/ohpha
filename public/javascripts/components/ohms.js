@@ -16,12 +16,12 @@ window.onload = function(){
 
   function preload(){
     game.stage.backgroundColor = '#fff';
-    game.load.image('shard', 'circuit-stuff/shard.jpg');
-    game.load.image('button', 'circuit-stuff/green-button.png');
-    game.load.image('bulb', 'circuit-stuff/bulb.png');
-    game.load.image('electron', 'circuit-stuff/electron.png');
-    game.load.image('nineVolt', 'circuit-stuff/nineVolt.png');
-    game.load.image('resistor', 'circuit-stuff/resistor.png');
+    game.load.image('shard', 'images/circuit-stuff/shard.jpg');
+    game.load.image('button', 'images/circuit-stuff/green-button.png');
+    game.load.image('bulb', 'images/circuit-stuff/bulb.png');
+    game.load.image('electron', 'images/circuit-stuff/electron.png');
+    game.load.image('nineVolt', 'images/circuit-stuff/nineVolt.png');
+    game.load.image('resistor', 'images/circuit-stuff/resistor.png');
   };
 
   function createBattery(){

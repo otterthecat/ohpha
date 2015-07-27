@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1 Welcome to #{title} Circuit POC
+  form
+    label(for='current') What is the current (I = V / R)?
+      input(type='text' name='current')
+
+    label(for='volatage') What is the voltage (V = I * R )?
+      input(type='text' name='voltage')
+
+    label(for='resistance') What is the resistance (R = V / I)?
+      input(type='text' name='resistance')
+
+    button(type='submit') Submit
