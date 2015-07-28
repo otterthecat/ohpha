@@ -1,9 +1,18 @@
 #!/usr/bin/env node
 var debug = require('debug')('ohmpha-app');
 var app = require('../app');
+var Io = require('socket.io');
 
 app.set('port', process.env.PORT || 3000);
 
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
+});
+
+var io = Io(server);
+io.on('connection', function(socket){
+  console.log('** socket.io connection made **');
+  socket.on('foobar', function(data){
+    console.log('foobar event with data of ', data);
+  });
 });
