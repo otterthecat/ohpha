@@ -10,9 +10,13 @@ var server = app.listen(app.get('port'), function() {
 });
 
 var io = Io(server);
+var userCount = 0;
 io.on('connection', function(socket){
-  console.log('** socket.io connection made **');
-  socket.on('foobar', function(data){
-    console.log('foobar event with data of ', data);
+  userCount += 1;
+  io.emit('connection:increment', userCount);
+
+  socket.on('disconnect', function(){
+    userCount -= 1;
+    io.emit('connection:decrement', userCount);
   });
 });
