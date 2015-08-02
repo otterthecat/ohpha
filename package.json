@@ -6,14 +6,13 @@
     "start": "node ./bin/www"
   },
   "browserify": {
-    "transform": ["browserify-shim"]
-  },
-  "browser": {
-    "Phaser": "./public/javscripts/vendor/phaser/phaser.2.3.0.min.js"
+    "transform": [
+      "browserify-shim"
+    ]
   },
   "browserify-shim": {
     "Phaser": {
-      "exports": "Phaser"
+      "exports": "global:Phaser"
     }
   },
   "dependencies": {
@@ -25,7 +24,8 @@
     "less-middleware": "1.0.x",
     "morgan": "~1.3.0",
     "serve-favicon": "~2.1.3",
-    "socket.io": "^1.3.6"
+    "socket.io": "^1.3.6",
+    "socket.io-client": "^1.3.6"
   },
   "devDependencies": {
     "browserify": "^11.0.1",
