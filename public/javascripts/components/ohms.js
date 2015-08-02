@@ -104,15 +104,27 @@ window.onload = function(){
 
   function togglePower(){
     if(circuit.isOn){
-      circuit.turnOff();
-      electronTween1.pause();
-      electronTween2.pause();
+      console.log('emitting off');
+      socket.emit('circuit:off');
     } else {
+      console.log('emitting on');
+      socket.emit('circuit:on');
+    }
+  };
+
+  socket.on('circuit:power:on', function(){
+    console.log('turning it on');
       circuit.turnOn();
       electronTween1.resume();
       electronTween2.resume();
-    }
-  };
+  });
+
+  socket.on('circuit:power:off', function(){
+    console.log('turning it off');
+      circuit.turnOff();
+      electronTween1.pause();
+      electronTween2.pause();
+  });
 
   function create(){
     game.physics.startSystem(Phaser.Physics.ARCADE);

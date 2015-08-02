@@ -19,4 +19,12 @@ io.on('connection', function(socket){
     userCount -= 1;
     io.emit('connection:decrement', userCount);
   });
+
+  socket.on('circuit:on', function(){
+    io.emit('circuit:power:on');
+  });
+
+  socket.on('circuit:off', function(){
+    io.emit('circuit:power:off');
+  });
 });
