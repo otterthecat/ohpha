@@ -113,17 +113,15 @@ window.onload = function(){
   };
 
   socket.on('circuit:power:on', function(){
-    console.log('turning it on');
-      circuit.turnOn();
-      electronTween1.resume();
-      electronTween2.resume();
+    circuit.turnOn();
+    electronTween1.resume();
+    electronTween2.resume();
   });
 
   socket.on('circuit:power:off', function(){
-    console.log('turning it off');
-      circuit.turnOff();
-      electronTween1.pause();
-      electronTween2.pause();
+    circuit.turnOff();
+    electronTween1.pause();
+    electronTween2.pause();
   });
 
   function create(){
@@ -219,7 +217,7 @@ window.onload = function(){
     // TODO: find a better way to do this
     window.circuit = circuit;
 
-    var resistorButton = game.add.button(650, 40, 'button', function(){
+    var addResistor = function(){
       var newResistor = new Resistor(Phaser, {
         'game': game,
         'x': 150 + (circuit.resistors.length * 50),
@@ -229,13 +227,25 @@ window.onload = function(){
       circuit.addResistor(newResistor);
       game.add.existing(newResistor);
       newResistor.anchor.set(0.5);
+    };
+
+    var resistorButton = game.add.button(650, 40, 'button', function(){
+      socket.emit('resistor:update', 'add');
     });
     resistorButton.anchor.set(0.5);
 
     var removeButton = game.add.button(750, 40, 'button', function(){
-      circuit.removeResistor();
+      socket.emit('resistor:update', 'remove');
     });
     removeButton.anchor.set(0.5);
+
+    socket.on('resistor:added', function(){
+      addResistor();
+    });
+
+    socket.on('resistor:removed', function(){
+      circuit.removeResistor();
+    });
 
     var plus = new Text(Phaser, {
       'game': game,

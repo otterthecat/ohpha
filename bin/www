@@ -27,4 +27,12 @@ io.on('connection', function(socket){
   socket.on('circuit:off', function(){
     io.emit('circuit:power:off');
   });
+
+  socket.on('resistor:update', function(val){
+    if(val === 'add'){
+      io.emit('resistor:added');
+    } else {
+      io.emit('resistor:removed');
+    }
+  });
 });
