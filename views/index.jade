@@ -3,6 +3,7 @@ extends layout
 block content
   h1 Welcome to #{title} Circuit POC
   h2#user-count
+  button(class="toggle") Toggle Canvas
   form
     label(for='current') What is the current (I = V / R)?
       input(type='text' name='current')
@@ -15,4 +16,4 @@ block content
 
     button(type='submit') Submit
 
-    iframe(allowTransparency="true" src="https://codebender.cc/embed/sketch:131324" frameborder="0")
+    iframe(class="hide" allowTransparency="true" frameborder="0")
