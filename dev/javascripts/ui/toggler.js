@@ -1,7 +1,8 @@
 var toggler = document.querySelector('.toggle');
 var iframe = document.querySelector('iframe');
+var socket;
 
-toggler.addEventListener('click', function(){
+var handler = function(){
   var canvas = document.querySelector('canvas');
   canvas.classList.toggle('hide');
   iframe.classList.toggle('hide');
@@ -11,6 +12,13 @@ toggler.addEventListener('click', function(){
   } else {
     iframe.src = '';
   }
+};
+
+toggler.addEventListener('click', function(){
+  socket.emit('toggler:clicked');
 });
 
-module.exports = toggler;
+module.exports = function(s){
+  socket = s;
+  return handler;
+};

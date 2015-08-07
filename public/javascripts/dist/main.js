@@ -227,7 +227,7 @@ var Phaser = (typeof window !== "undefined" ? window['Phaser'] : typeof global !
     createWire = require('./components/wire'),
     uiForm = require('./ui/form'),
     socket = require('./socket/socket'),
-    toggler = require('./ui/toggler');
+    toggler = require('./ui/toggler')(socket);
 
 var bulb,
   electron,
@@ -339,6 +339,8 @@ function togglePower(){
     socket.emit('circuit:on');
   }
 };
+
+socket.on('codebender:toggle', toggler);
 
 socket.on('circuit:power:on', function(){
   circuit.turnOn();
@@ -552,8 +554,9 @@ module.exports = submitButton;
 },{}],11:[function(require,module,exports){
 var toggler = document.querySelector('.toggle');
 var iframe = document.querySelector('iframe');
+var socket;
 
-toggler.addEventListener('click', function(){
+var handler = function(){
   var canvas = document.querySelector('canvas');
   canvas.classList.toggle('hide');
   iframe.classList.toggle('hide');
@@ -563,9 +566,16 @@ toggler.addEventListener('click', function(){
   } else {
     iframe.src = '';
   }
+};
+
+toggler.addEventListener('click', function(){
+  socket.emit('toggler:clicked');
 });
 
-module.exports = toggler;
+module.exports = function(s){
+  socket = s;
+  return handler;
+};
 },{}],12:[function(require,module,exports){
 
 module.exports = require('./lib/');

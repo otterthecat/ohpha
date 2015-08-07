@@ -9,7 +9,7 @@ var Phaser = require('Phaser'),
     createWire = require('./components/wire'),
     uiForm = require('./ui/form'),
     socket = require('./socket/socket'),
-    toggler = require('./ui/toggler');
+    toggler = require('./ui/toggler')(socket);
 
 var bulb,
   electron,
@@ -121,6 +121,8 @@ function togglePower(){
     socket.emit('circuit:on');
   }
 };
+
+socket.on('codebender:toggle', toggler);
 
 socket.on('circuit:power:on', function(){
   circuit.turnOn();
