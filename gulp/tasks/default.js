@@ -3,6 +3,6 @@ module.exports = [
 	'jscs',
 	'jshint',
 	'browserify',
-	'less',
+	'stylus',
 	'report'
 ];

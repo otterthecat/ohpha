@@ -6,5 +6,7 @@ module.exports = {
 
     'module': ['./dev/javascripts/main.js'],
 
+    'css': ['./dev/styles/main.styl'],
+
     'test': ['./test/specs/**/*.js']
 };
