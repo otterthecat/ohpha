@@ -11,6 +11,6 @@ module.exports = function () {
 
 	return gulp.watch(
 				[sources.app],
-				['browserify', browserSync.reload]
+				['browserify', 'stylus', browserSync.reload]
 			);
 };
