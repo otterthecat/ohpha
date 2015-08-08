@@ -6,47 +6,142 @@ body {
   font-size: 16px;
 }
 h1,
-h2 {
-  width: 800px;
-  margin: 0 auto 15px;
-}
+h2,
 form {
-  width: 800px;
-  margin: 0 auto;
+  *zoom: 1;
+  width: auto;
+  max-width: 800px;
+  float: none;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+h1:before,
+h2:before,
+form:before,
+h1:after,
+h2:after,
+form:after {
+  content: '';
+  display: table;
+}
+h1:after,
+h2:after,
+form:after {
+  clear: both;
+}
+button,
+canvas {
+  border: 1px solid #333;
 }
 button {
   background-color: #ffbe0a;
-  border: 1px solid #333;
   border-radius: 5px;
   cursor: pointer;
   right: 0;
 }
+.toggle {
+  *zoom: 1;
+  width: auto;
+  max-width: 800px;
+  float: none;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 0;
+  padding-right: 0;
+  width: 800px;
+}
+.toggle:before,
+.toggle:after {
+  content: '';
+  display: table;
+}
+.toggle:after {
+  clear: both;
+}
 canvas {
-  border: 1px solid #666;
-  margin: 0 auto;
+  *zoom: 1;
+  width: auto;
+  max-width: 100%;
+  float: none;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 0;
+  padding-right: 0;
+  border-color: #666;
+}
+canvas:before,
+canvas:after {
+  content: '';
+  display: table;
+}
+canvas:after {
+  clear: both;
 }
 label,
-input,
 button {
   display: block;
 }
 label {
-  width: 32%;
-  display: inline-block;
+  *zoom: 1;
+  float: left;
+  clear: none;
+  text-align: inherit;
+  width: 31.999999999999996%;
+  margin-left: 0%;
+  margin-right: 2%;
+  box-sizing: border-box;
 }
-label:last-of-type {
-  width: 34%;
+label:before,
+label:after {
+  content: '';
+  display: table;
+}
+label:after {
+  clear: both;
+}
+label:nth-child(3n) {
+  margin-right: 0%;
+  float: right;
+}
+label:nth-child(3n+1) {
+  clear: both;
+}
+input {
+  *zoom: 1;
+  float: left;
+  clear: none;
+  text-align: inherit;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 0%;
+  padding: 10px 0;
+}
+input:before,
+input:after {
+  content: '';
+  display: table;
+}
+input:after {
+  clear: both;
 }
 input,
 button {
-  margin: 0 0 15px;
+  margin-bottom: 15px;
+}
+button {
   padding: 10px;
 }
-.correct {
+.correct,
+.error {
   border: 2px solid #00cd00;
 }
 .error {
-  border: 2px solid #f03;
+  border-color: #f03;
 }
 a {
   color: #00b7ff;
@@ -55,7 +150,20 @@ a {
   display: none !important;
 }
 iframe {
-  height: 510px;
+  *zoom: 1;
+  float: left;
+  clear: none;
+  text-align: inherit;
   width: 100%;
-  margin: 10px 0 10px;
+  margin-left: 0%;
+  margin-right: 0%;
+  height: 510px;
+}
+iframe:before,
+iframe:after {
+  content: '';
+  display: table;
+}
+iframe:after {
+  clear: both;
 }
