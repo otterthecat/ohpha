@@ -167,3 +167,18 @@ iframe:after {
 iframe:after {
   clear: both;
 }
+.chat {
+  box-sizing: border-box;
+  position: absolute;
+  width: 200px;
+}
+.chat .display {
+  height: 300px;
+  border: 1px solid #000;
+  overflow-y: auto;
+}
+.chat .display .messages {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}

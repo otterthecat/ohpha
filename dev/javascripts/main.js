@@ -9,7 +9,8 @@ var Phaser = require('Phaser'),
     createWire = require('./components/wire'),
     uiForm = require('./ui/form'),
     socket = require('./socket/socket'),
-    toggler = require('./ui/toggler')(socket);
+    toggler = require('./ui/toggler')(socket),
+    chat = require('./ui/chat')(socket);
 
 var bulb,
   electron,

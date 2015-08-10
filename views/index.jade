@@ -1,6 +1,11 @@
 extends layout
 
 block content
+  div.chat
+    div.display
+      ul.messages
+    input.msg(type="text")
+    button send
   h1 Welcome to #{title} Circuit POC
   h2#user-count
   button(class="toggle") Toggle Canvas

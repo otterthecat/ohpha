@@ -38,5 +38,9 @@ io.on('connection', function(socket){
 
   socket.on('toggler:clicked', function(){
       io.emit('codebender:toggle');
-  })
+  });
+
+  socket.on('message:send', function(data){
+    io.emit('message:recieve', data);
+  });
 });
