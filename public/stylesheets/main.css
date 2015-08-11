@@ -1,3 +1,25 @@
+div,
+header,
+nav,
+menu,
+form,
+input,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+iframe,
+label,
+fieldset {
+  box-sizing: border-box;
+}
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -94,7 +116,6 @@ label {
   width: 31.999999999999996%;
   margin-left: 0%;
   margin-right: 2%;
-  box-sizing: border-box;
 }
 label:before,
 label:after {
@@ -168,7 +189,6 @@ iframe:after {
   clear: both;
 }
 .chat {
-  box-sizing: border-box;
   position: absolute;
   width: 200px;
 }
@@ -181,4 +201,27 @@ iframe:after {
   padding: 0;
   margin: 0;
   list-style-type: none;
+}
+.chat .display .messages li:nth-child(2n+1) {
+  background-color: #cfecee;
+}
+.chat input {
+  margin-bottom: 5px;
+}
+.chat button {
+  *zoom: 1;
+  float: left;
+  clear: none;
+  text-align: inherit;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 0%;
+}
+.chat button:before,
+.chat button:after {
+  content: '';
+  display: table;
+}
+.chat button:after {
+  clear: both;
 }
