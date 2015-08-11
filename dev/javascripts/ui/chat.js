@@ -9,8 +9,7 @@ module.exports = function(socket){
   });
 
   chatBtn.addEventListener('click', function(){
-    console.log('clicked');
-    console.log('sending ', chatInput.value);
     socket.emit('message:send', chatInput.value);
+    chatInput.value = '';
   });
 };
