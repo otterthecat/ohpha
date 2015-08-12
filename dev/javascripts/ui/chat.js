@@ -1,11 +1,17 @@
 module.exports = function(socket){
 
-  var chatInput = document.querySelector('.msg');
-  var chatBtn = document.querySelector('.chat button');
-  var msgList = document.querySelector('.messages');
+  var chat = document.querySelector('.chat');
+  var chatInput = chat.querySelector('.msg');
+  var chatBtn = chat.querySelector('button');
+  var msgList = chat.querySelector('.messages');
+  var chatTab = chat.querySelector('header');
 
   socket.on('message:recieve', function(data){
     msgList.innerHTML += '<li>' + data + '</li>';
+  });
+
+  chatTab.addEventListener('click', function(){
+    chat.classList.toggle('active');
   });
 
   chatBtn.addEventListener('click', function(){

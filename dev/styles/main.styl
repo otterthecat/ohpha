@@ -13,7 +13,7 @@ fieldset
   box-sizing: border-box
 
 body
-  padding: 50px
+  padding: 0 50px
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
   background: primaryColor
   font-family: Arial, sans-serif
@@ -78,10 +78,22 @@ iframe
   height: 510px
 
 .chat
-  position: absolute
+  bottom: -400px
+  position: fixed
+  transition: bottom 0.5s
   width: 200px
 
+  &.active
+    bottom: 0
+
+  header
+    background: #666
+    color: #eee
+    cursor: pointer
+    padding: 4px
+
   .display
+    background: primaryColor
     height: 300px
     border: 1px solid #000
     overflow-y: auto
@@ -91,8 +103,10 @@ iframe
       margin: 0
       list-style-type: none
 
-      li:nth-child(2n+1)
-        background-color: lighten(primaryColor, 15%)
+      li
+        padding: 4px 2px
+        &:nth-child(2n+1)
+          background-color: lighten(primaryColor, 30%)
 
   input
     margin-bottom: 5px

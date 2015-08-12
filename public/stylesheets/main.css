@@ -21,7 +21,7 @@ fieldset {
   box-sizing: border-box;
 }
 body {
-  padding: 50px;
+  padding: 0 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: #c7e9eb;
   font-family: Arial, sans-serif;
@@ -189,10 +189,22 @@ iframe:after {
   clear: both;
 }
 .chat {
-  position: absolute;
+  bottom: -400px;
+  position: fixed;
+  transition: bottom 0.5s;
   width: 200px;
 }
+.chat.active {
+  bottom: 0;
+}
+.chat header {
+  background: #666;
+  color: #eee;
+  cursor: pointer;
+  padding: 4px;
+}
 .chat .display {
+  background: #c7e9eb;
   height: 300px;
   border: 1px solid #000;
   overflow-y: auto;
@@ -202,8 +214,11 @@ iframe:after {
   margin: 0;
   list-style-type: none;
 }
+.chat .display .messages li {
+  padding: 4px 2px;
+}
 .chat .display .messages li:nth-child(2n+1) {
-  background-color: #cfecee;
+  background-color: #d8f0f1;
 }
 .chat input {
   margin-bottom: 5px;
