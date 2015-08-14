@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 var debug = require('debug')('ohmpha-app');
+var _request = require('request');
 var app = require('../app');
 var Io = require('socket.io');
 
@@ -42,5 +43,17 @@ io.on('connection', function(socket){
 
   socket.on('message:send', function(data){
     io.emit('message:recieve', data);
+  });
+
+  socket.on('bulb:explode', function(){
+    _request.post('http://genericaccount.com', {}, function(){});
+  });
+
+  socket.on('bulb:shine', function(brightness){
+    _request.post('http://genericaccount.com', {}, function(){});
+  });
+
+  socket.on('bulb:off', function(){
+    _request.post('http://genericaccount.com', {}, function(){});
   });
 });

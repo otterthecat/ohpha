@@ -401,6 +401,7 @@ function create(){
     textVoltage.setText('Bulb is overloaded');
     textResistance.setText('Bulb is overloaded');
     textWatts.setText('Bulb is overloaded');
+    socket.emit('bulb:explode');
   });
   bulb.onShine.add(function(brightness){
     var stats = circuit.getStats();
@@ -408,12 +409,14 @@ function create(){
     textVoltage.setText("Voltage is: " + stats.voltage);
     textResistance.setText("Resistance is: " + stats.resistance);
     textWatts.setText('Watts is: ' + stats.watts);
+    socket.emit('bulb:shine', brightness);
   });
   bulb.onNoPower.add(function(){
     textCurrent.setText('Current is: 0');
     textVoltage.setText("Voltage is: 0");
     textResistance.setText("Resistance is: 0");
     textWatts.setText('Watts is: 0');
+    socket.emit('bulb:off');
   });
 
   circuit = new Circuit(Phaser);
