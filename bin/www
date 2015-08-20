@@ -1,8 +1,13 @@
 #!/usr/bin/env node
 var debug = require('debug')('ohmpha-app');
-var particle = require('../lib/particle');
+var Beam = require('particle-beam');
 var app = require('../app');
 var Io = require('socket.io');
+
+var beam = Beam({
+  "device": process.env.YODA_ID,
+  "token": process.env.YODA_TOKEN
+});
 
 app.set('port', process.env.PORT || 3000);
 
@@ -46,14 +51,32 @@ io.on('connection', function(socket){
   });
 
   socket.on('bulb:explode', function(){
-    particle({}, function(){});
+    beam('led', 'off', function(err, res, body){
+      if(err){
+        conosle.log(err);
+        return;
+      }
+      console.log(body);
+    });
   });
 
   socket.on('bulb:shine', function(brightness){
-    particle({}, function(){});
+    beam('led', 'on', function(err, res, body){
+      if(err){
+        conosle.log(err);
+        return;
+      }
+      console.log(body);
+    });
   });
 
   socket.on('bulb:off', function(){
-    particle({}, function(){});
+    beam('led', 'off', function(err, res, body){
+      if(err){
+        conosle.log(err);
+        return;
+      }
+      console.log(body);
+    });
   });
 });
