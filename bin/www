@@ -46,7 +46,7 @@ io.on('connection', function(socket){
   });
 
   socket.on('bulb:explode', function(){
-    particle('led', 'off', function(err, res, body){
+    particle('bulb', '-1', function(err, res, body){
       if(err){
         conosle.log(err);
         return;
@@ -56,7 +56,8 @@ io.on('connection', function(socket){
   });
 
   socket.on('bulb:shine', function(brightness){
-    particle('led', 'on', function(err, res, body){
+    var adjustedBrightness = Math.round(255 * brightness);
+    particle('bulb', adjustedBrightness, function(err, res, body){
       if(err){
         conosle.log(err);
         return;
@@ -66,7 +67,7 @@ io.on('connection', function(socket){
   });
 
   socket.on('bulb:off', function(){
-    particle('led', 'off', function(err, res, body){
+    particle('bulb', '-1', function(err, res, body){
       if(err){
         conosle.log(err);
         return;
