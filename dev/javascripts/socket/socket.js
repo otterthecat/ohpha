@@ -1,4 +1,4 @@
-var socket = require('socket.io-client')();
+var socket = require('socket.io-client')('http://localhost:3000/chat');
 
 var updateUserCount = function(count){
   document.querySelector("#user-count").innerHTML = 'Connected Users: ' + count;

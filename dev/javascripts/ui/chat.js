@@ -6,7 +6,7 @@ module.exports = function(socket){
   var msgList = chat.querySelector('.messages');
   var chatTab = chat.querySelector('header');
 
-  socket.on('message:recieve', function(data){
+  socket.on('msg:recieved', function(data){
     msgList.innerHTML += '<li>' + data + '</li>';
   });
 
@@ -15,7 +15,7 @@ module.exports = function(socket){
   });
 
   chatBtn.addEventListener('click', function(){
-    socket.emit('message:send', chatInput.value);
+    socket.emit('sent', chatInput.value);
     chatInput.value = '';
   });
 };

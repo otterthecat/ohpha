@@ -506,7 +506,7 @@ function create(){
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./components/battery":1,"./components/bulb":2,"./components/circuit":3,"./components/electron":4,"./components/resistor":5,"./components/text":6,"./components/wire":7,"./socket/socket":9,"./ui/chat":10,"./ui/form":11,"./ui/toggler":12}],9:[function(require,module,exports){
-var socket = require('socket.io-client')();
+var socket = require('socket.io-client')('http://localhost:3000/chat');
 
 var updateUserCount = function(count){
   document.querySelector("#user-count").innerHTML = 'Connected Users: ' + count;
@@ -530,7 +530,7 @@ module.exports = function(socket){
   var msgList = chat.querySelector('.messages');
   var chatTab = chat.querySelector('header');
 
-  socket.on('message:recieve', function(data){
+  socket.on('msg:recieved', function(data){
     msgList.innerHTML += '<li>' + data + '</li>';
   });
 
@@ -539,7 +539,7 @@ module.exports = function(socket){
   });
 
   chatBtn.addEventListener('click', function(){
-    socket.emit('message:send', chatInput.value);
+    socket.emit('sent', chatInput.value);
     chatInput.value = '';
   });
 };

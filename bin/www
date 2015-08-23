@@ -2,7 +2,9 @@
 var debug = require('debug')('ohmpha-app');
 var particle = require('../lib/particle');
 var app = require('../app');
+var config = require('../lib/config/config');
 var Io = require('socket.io');
+var addNamespace = require('../lib/sockets/helpers/addNamespace');
 
 app.set('port', process.env.PORT || 3000);
 
@@ -12,67 +14,7 @@ var server = app.listen(app.get('port'), function() {
 
 var io = Io(server);
 var userCount = 0;
-io.on('connection', function(socket){
-  userCount += 1;
-  io.emit('connection:increment', userCount);
-
-  socket.on('disconnect', function(){
-    userCount -= 1;
-    io.emit('connection:decrement', userCount);
-  });
-
-  socket.on('circuit:on', function(){
-    io.emit('circuit:power:on');
-  });
-
-  socket.on('circuit:off', function(){
-    io.emit('circuit:power:off');
-  });
-
-  socket.on('resistor:update', function(val){
-    if(val === 'add'){
-      io.emit('resistor:added');
-    } else {
-      io.emit('resistor:removed');
-    }
-  });
-
-  socket.on('toggler:clicked', function(){
-      io.emit('codebender:toggle');
-  });
-
-  socket.on('message:send', function(data){
-    io.emit('message:recieve', data);
-  });
-
-  socket.on('bulb:explode', function(){
-    particle('bulb', '-1', function(err, res, body){
-      if(err){
-        conosle.log(err);
-        return;
-      }
-      console.log(body);
-    });
-  });
-
-  socket.on('bulb:shine', function(brightness){
-    var adjustedBrightness = Math.round(255 * brightness);
-    particle('bulb', adjustedBrightness, function(err, res, body){
-      if(err){
-        conosle.log(err);
-        return;
-      }
-      console.log(body);
-    });
-  });
-
-  socket.on('bulb:off', function(){
-    particle('bulb', '-1', function(err, res, body){
-      if(err){
-        conosle.log(err);
-        return;
-      }
-      console.log(body);
-    });
-  });
-});
+io.set('origins', config.socket_origin);
+addNamespace(io, '/chat', require('../lib/sockets/namespaces/chat'));
+addNamespace(io, '/bulb', require('../lib/sockets/namespaces/bulb'));
+addNamespace(io, '/circuit', require('../lib/sockets/namespaces/circuit'));
