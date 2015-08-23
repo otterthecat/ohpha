@@ -6,7 +6,7 @@ var config = require('../lib/config/config');
 var Io = require('socket.io');
 var addNamespace = require('../lib/sockets/helpers/addNamespace');
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', config.port);
 
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
