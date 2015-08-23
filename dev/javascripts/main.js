@@ -8,9 +8,11 @@ var Phaser = require('Phaser'),
     Txt = require('./components/text'),
     createWire = require('./components/wire'),
     uiForm = require('./ui/form'),
-    socket = require('./socket/socket'),
+    socket = require('./sockets/socket'),
     toggler = require('./ui/toggler')(socket),
-    chat = require('./ui/chat')(socket);
+    chat = require('./ui/chat')(require('./sockets/chat')),
+    bulbSocket = require('./sockets/bulb'),
+    circuitSocket = require('./sockets/circuit');
 
 var bulb,
   electron,
@@ -116,22 +118,22 @@ function createResistor(){
 function togglePower(){
   if(circuit.isOn){
     console.log('emitting off');
-    socket.emit('circuit:off');
+    circuitSocket.emit('off');
   } else {
     console.log('emitting on');
-    socket.emit('circuit:on');
+    circuitSocket.emit('on');
   }
 };
 
 socket.on('codebender:toggle', toggler);
 
-socket.on('circuit:power:on', function(){
+circuitSocket.on('power:on', function(){
   circuit.turnOn();
   electronTween1.resume();
   electronTween2.resume();
 });
 
-socket.on('circuit:power:off', function(){
+circuitSocket.on('power:off', function(){
   circuit.turnOff();
   electronTween1.pause();
   electronTween2.pause();
@@ -183,7 +185,7 @@ function create(){
     textVoltage.setText('Bulb is overloaded');
     textResistance.setText('Bulb is overloaded');
     textWatts.setText('Bulb is overloaded');
-    socket.emit('bulb:explode');
+    bulbSocket.emit('explode');
   });
   bulb.onShine.add(function(brightness){
     var stats = circuit.getStats();
@@ -191,14 +193,14 @@ function create(){
     textVoltage.setText("Voltage is: " + stats.voltage);
     textResistance.setText("Resistance is: " + stats.resistance);
     textWatts.setText('Watts is: ' + stats.watts);
-    socket.emit('bulb:shine', brightness);
+    bulbSocket.emit('shine', brightness);
   });
   bulb.onNoPower.add(function(){
     textCurrent.setText('Current is: 0');
     textVoltage.setText("Voltage is: 0");
     textResistance.setText("Resistance is: 0");
     textWatts.setText('Watts is: 0');
-    socket.emit('bulb:off');
+    bulbSocket.emit('off');
   });
 
   circuit = new Circuit(Phaser);
@@ -246,20 +248,20 @@ function create(){
   };
 
   var resistorButton = game.add.button(650, 40, 'button', function(){
-    socket.emit('resistor:update', 'add');
+    circuitSocket.emit('resistor:update', 'add');
   });
   resistorButton.anchor.set(0.5);
 
   var removeButton = game.add.button(750, 40, 'button', function(){
-    socket.emit('resistor:update', 'remove');
+    circuitSocket.emit('resistor:update', 'remove');
   });
   removeButton.anchor.set(0.5);
 
-  socket.on('resistor:added', function(){
+  circuitSocket.on('resistor:added', function(){
     addResistor();
   });
 
-  socket.on('resistor:removed', function(){
+  circuitSocket.on('resistor:removed', function(){
     circuit.removeResistor();
   });
 

@@ -3,8 +3,7 @@ var debug = require('debug')('ohmpha-app');
 var particle = require('../lib/particle');
 var app = require('../app');
 var config = require('../lib/config/config');
-var Io = require('socket.io');
-var addNamespace = require('../lib/sockets/helpers/addNamespace');
+var Io = require('../lib/sockets/ns-socket');
 
 app.set('port', config.port);
 
@@ -13,8 +12,3 @@ var server = app.listen(app.get('port'), function() {
 });
 
 var io = Io(server);
-var userCount = 0;
-io.set('origins', config.socket_origin);
-addNamespace(io, '/chat', require('../lib/sockets/namespaces/chat'));
-addNamespace(io, '/bulb', require('../lib/sockets/namespaces/bulb'));
-addNamespace(io, '/circuit', require('../lib/sockets/namespaces/circuit'));
