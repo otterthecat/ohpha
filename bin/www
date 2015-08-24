@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 var debug = require('debug')('ohmpha-app');
-var particle = require('../lib/particle');
 var app = require('../app');
 var config = require('../lib/config/config');
 var Io = require('../lib/sockets/ns-socket');
