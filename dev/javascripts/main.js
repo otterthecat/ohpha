@@ -126,6 +126,15 @@ function togglePower(){
 };
 
 socket.on('codebender:toggle', toggler);
+socket.on('foo', function(data){
+  var target = document.querySelector('#bulb-response');
+  if(!data.ok){
+    target.innerHTML = "Failed to update bulb";
+  }
+  else {
+    target.innerHTML = "Bulb Updated";
+  }
+});
 
 circuitSocket.on('power:on', function(){
   circuit.turnOn();

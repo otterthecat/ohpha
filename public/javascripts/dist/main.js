@@ -344,6 +344,18 @@ function togglePower(){
 };
 
 socket.on('codebender:toggle', toggler);
+socket.on('foo', function(data){
+  console.log("FOO RECIEVED: ", data);
+  var target = document.querySelector('#bulb-response');
+  if(!data.ok){
+    console.log('false');
+    target.innerHTML = "Failed to update bulb";
+  }
+  else {
+    console.log('ok');
+    target.innerHTML = "Bulb Updated";
+  }
+});
 
 circuitSocket.on('power:on', function(){
   circuit.turnOn();
