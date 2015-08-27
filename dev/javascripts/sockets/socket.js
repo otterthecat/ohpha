@@ -12,4 +12,8 @@ socket.on('connection:decrement', function(count){
   updateUserCount(count);
 });
 
+socket.on('pullup:update', function(data){
+  console.log("PULLUP DATA ", data);
+});
+
 module.exports = socket;

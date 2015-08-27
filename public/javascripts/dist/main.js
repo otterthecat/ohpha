@@ -345,14 +345,11 @@ function togglePower(){
 
 socket.on('codebender:toggle', toggler);
 socket.on('foo', function(data){
-  console.log("FOO RECIEVED: ", data);
   var target = document.querySelector('#bulb-response');
   if(!data.ok){
-    console.log('false');
     target.innerHTML = "Failed to update bulb";
   }
   else {
-    console.log('ok');
     target.innerHTML = "Bulb Updated";
   }
 });
@@ -541,6 +538,10 @@ socket.on('connection:increment', function(count){
 
 socket.on('connection:decrement', function(count){
   updateUserCount(count);
+});
+
+socket.on('pullup:update', function(data){
+  console.log("PULLUP DATA ", data);
 });
 
 module.exports = socket;
