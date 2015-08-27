@@ -1,7 +1,7 @@
 @import 'jeet'
 @import 'rupture'
 
-fullWidth = 800px
+fullWidth = 960px
 primaryColor = #c7e9eb
 
 
@@ -19,9 +19,13 @@ body
   font-family: Arial, sans-serif
   font-size: 16px
 
-h1,
-h2,
-form
+#bulb-response:before
+  content: "Status:"
+
+#user-count:before
+  content: "User Count:"
+
+.main-content
   center(fullWidth)
 
 button,
@@ -32,11 +36,12 @@ button
   background-color: #FFBE0A
   border-radius: 5px
   cursor: pointer
-  right: 0
+
+  &[type="submit"]
+    clear: both
 
 .toggle
-  center(fullWidth)
-  width: fullWidth
+  span(1)
 
 canvas
   center(100%)

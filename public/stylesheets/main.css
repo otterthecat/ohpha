@@ -27,12 +27,16 @@ body {
   font-family: Arial, sans-serif;
   font-size: 16px;
 }
-h1,
-h2,
-form {
+#bulb-response:before {
+  content: "Status:";
+}
+#user-count:before {
+  content: "User Count:";
+}
+.main-content {
   *zoom: 1;
   width: auto;
-  max-width: 800px;
+  max-width: 960px;
   float: none;
   display: block;
   margin-right: auto;
@@ -40,18 +44,12 @@ form {
   padding-left: 0;
   padding-right: 0;
 }
-h1:before,
-h2:before,
-form:before,
-h1:after,
-h2:after,
-form:after {
+.main-content:before,
+.main-content:after {
   content: '';
   display: table;
 }
-h1:after,
-h2:after,
-form:after {
+.main-content:after {
   clear: both;
 }
 button,
@@ -62,19 +60,18 @@ button {
   background-color: #ffbe0a;
   border-radius: 5px;
   cursor: pointer;
-  right: 0;
+}
+button[type="submit"] {
+  clear: both;
 }
 .toggle {
   *zoom: 1;
-  width: auto;
-  max-width: 800px;
-  float: none;
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 0;
-  padding-right: 0;
-  width: 800px;
+  float: left;
+  clear: none;
+  text-align: inherit;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 0%;
 }
 .toggle:before,
 .toggle:after {

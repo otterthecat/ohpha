@@ -1,26 +1,31 @@
 extends layout
 
 block content
+  div.main-content
+    header
+      h1 Circuit Interactives POC
+      span#bulb-response
+      span#user-count
+
+    form
+      label(for='current') What is the current (I = V / R)?
+        input(type='text' name='current')
+
+      label(for='volatage') What is the voltage (V = I * R )?
+        input(type='text' name='voltage')
+
+      label(for='resistance') What is the resistance (R = V / I)?
+        input(type='text' name='resistance')
+
+      button(type='submit') Submit
+
+    button(class="toggle") Toggle Canvas
+
+    iframe(class="hide" allowTransparency="true" frameborder="0")
+
   div.chat
     header Chat
     div.display
       ul.messages
     input.msg(type="text")
     button send
-  h1 Welcome to #{title} Circuit POC
-  div#bulb-response
-  h2#user-count
-  button(class="toggle") Toggle Canvas
-  form
-    label(for='current') What is the current (I = V / R)?
-      input(type='text' name='current')
-
-    label(for='volatage') What is the voltage (V = I * R )?
-      input(type='text' name='voltage')
-
-    label(for='resistance') What is the resistance (R = V / I)?
-      input(type='text' name='resistance')
-
-    button(type='submit') Submit
-
-    iframe(class="hide" allowTransparency="true" frameborder="0")

@@ -2,7 +2,7 @@ module.exports = {
 
     'js': ['./gulp/tasks/*.js','./dev/javascripts/**/*.js'],
 
-    'app': ['./dev/javascripts/**/*.js', './app.js', './bin/www', './dev/styles/**/*.styl'],
+    'app': ['./dev/javascripts/**/*.js', './app.js', './bin/www', './views', './dev/styles/**/*.styl'],
 
     'module': ['./dev/javascripts/main.js'],
 
