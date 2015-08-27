@@ -21,7 +21,8 @@ fieldset {
   box-sizing: border-box;
 }
 body {
-  padding: 0 50px;
+  padding: 0;
+  margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: #c7e9eb;
   font-family: Arial, sans-serif;
@@ -32,6 +33,25 @@ body {
 }
 #user-count:before {
   content: "User Count:";
+}
+.main-header {
+  *zoom: 1;
+  float: left;
+  clear: none;
+  text-align: inherit;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 0%;
+  background: #333;
+  color: #ddd;
+}
+.main-header:before,
+.main-header:after {
+  content: '';
+  display: table;
+}
+.main-header:after {
+  clear: both;
 }
 .main-content {
   *zoom: 1;
@@ -62,23 +82,6 @@ button {
   cursor: pointer;
 }
 button[type="submit"] {
-  clear: both;
-}
-.toggle {
-  *zoom: 1;
-  float: left;
-  clear: none;
-  text-align: inherit;
-  width: 100%;
-  margin-left: 0%;
-  margin-right: 0%;
-}
-.toggle:before,
-.toggle:after {
-  content: '';
-  display: table;
-}
-.toggle:after {
   clear: both;
 }
 canvas {
@@ -184,6 +187,31 @@ iframe:after {
 }
 iframe:after {
   clear: both;
+}
+.tabs {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.tabs li {
+  *zoom: 1;
+  float: left;
+  clear: none;
+  text-align: inherit;
+  width: 33.33333333333333%;
+  margin-left: 0%;
+  margin-right: 0%;
+}
+.tabs li:before,
+.tabs li:after {
+  content: '';
+  display: table;
+}
+.tabs li:after {
+  clear: both;
+}
+.tabs li:last-child {
+  margin-right: 0%;
 }
 .chat {
   bottom: -400px;

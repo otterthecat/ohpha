@@ -1,11 +1,20 @@
 extends layout
 
 block content
+
+  header.main-header
+    h1 Circuit Interactives POC
+    span#bulb-response
+    span#user-count
+
   div.main-content
-    header
-      h1 Circuit Interactives POC
-      span#bulb-response
-      span#user-count
+    ul.tabs
+      li
+        span Intro
+      li.toggle
+        span Create
+      li
+        span Code
 
     form
       label(for='current') What is the current (I = V / R)?
@@ -18,8 +27,6 @@ block content
         input(type='text' name='resistance')
 
       button(type='submit') Submit
-
-    button(class="toggle") Toggle Canvas
 
     iframe(class="hide" allowTransparency="true" frameborder="0")
 
