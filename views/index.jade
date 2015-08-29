@@ -9,26 +9,29 @@ block content
 
   div.main-content
     ul.tabs
-      li
-        span Intro
-      li.toggle
-        span Create
-      li
-        span Code
+      li.intro.active Intro
+      li.toggle.create Create
+      li.code Code
 
-    form
-      label(for='current') What is the current (I = V / R)?
-        input(type='text' name='current')
+    section.tab-content.intro
+      form
+        label(for='current') What is the current (I = V / R)?
+          input(type='text' name='current')
 
-      label(for='volatage') What is the voltage (V = I * R )?
-        input(type='text' name='voltage')
+        label(for='volatage') What is the voltage (V = I * R )?
+          input(type='text' name='voltage')
 
-      label(for='resistance') What is the resistance (R = V / I)?
-        input(type='text' name='resistance')
+        label(for='resistance') What is the resistance (R = V / I)?
+          input(type='text' name='resistance')
 
-      button(type='submit') Submit
+        button(type='submit') Submit
 
-    iframe(class="hide" allowTransparency="true" frameborder="0")
+      div#interactive
+
+    section.tab-content.create.hide Wire schematic here
+
+    section.tab-content.code.hide
+      iframe(src='https://codebender.cc/embed/sketch:131324' allowTransparency="true" frameborder="0")
 
   div.chat
     header Chat

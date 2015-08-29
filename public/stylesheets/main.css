@@ -36,12 +36,6 @@ body {
 }
 .main-header {
   *zoom: 1;
-  float: left;
-  clear: none;
-  text-align: inherit;
-  width: 100%;
-  margin-left: 0%;
-  margin-right: 0%;
   background: #333;
   color: #ddd;
 }
@@ -56,7 +50,7 @@ body {
 .main-content {
   *zoom: 1;
   width: auto;
-  max-width: 960px;
+  max-width: 840px;
   float: none;
   display: block;
   margin-right: auto;
@@ -189,9 +183,18 @@ iframe:after {
   clear: both;
 }
 .tabs {
+  *zoom: 1;
   margin: 0;
   padding: 0;
   list-style-type: none;
+}
+.tabs:before,
+.tabs:after {
+  content: '';
+  display: table;
+}
+.tabs:after {
+  clear: both;
 }
 .tabs li {
   *zoom: 1;
@@ -201,6 +204,8 @@ iframe:after {
   width: 33.33333333333333%;
   margin-left: 0%;
   margin-right: 0%;
+  padding: 1rem;
+  text-align: center;
 }
 .tabs li:before,
 .tabs li:after {
@@ -212,6 +217,38 @@ iframe:after {
 }
 .tabs li:last-child {
   margin-right: 0%;
+}
+.tabs li:last-of-type {
+  *zoom: 1;
+}
+.tabs li:last-of-type:before,
+.tabs li:last-of-type:after {
+  content: '';
+  display: table;
+}
+.tabs li:last-of-type:after {
+  clear: both;
+}
+.tab-content {
+  *zoom: 1;
+  width: auto;
+  max-width: 840px;
+  float: none;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 0;
+  padding-right: 0;
+  border: 0.2rem solid #333;
+  padding: 2rem;
+}
+.tab-content:before,
+.tab-content:after {
+  content: '';
+  display: table;
+}
+.tab-content:after {
+  clear: both;
 }
 .chat {
   bottom: -400px;

@@ -22,7 +22,7 @@ var bulb,
   electronTween1,
   electronTween2,
   electronSpeed = 400;
-var game = new Phaser.Game(800, 420, Phaser.CANVAS, 'ohms', {
+var game = new Phaser.Game(800, 420, Phaser.CANVAS, 'interactive', {
     preload: preload,
     create: create
 });
