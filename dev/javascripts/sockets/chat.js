@@ -1,1 +1,1 @@
-module.exports = require('socket.io-client')('http://localhost:3000/chat');
+module.exports = require('socket.io-client')(window.location.origin + '/chat');
