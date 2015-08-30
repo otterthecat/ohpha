@@ -227,7 +227,7 @@ var Phaser = (typeof window !== "undefined" ? window['Phaser'] : typeof global !
     createWire = require('./components/wire'),
     uiForm = require('./ui/form'),
     socket = require('./sockets/socket'),
-    toggler = require('./ui/toggler')(socket),
+    tabs = require('./ui/tabs'),
     chat = require('./ui/chat')(require('./sockets/chat')),
     bulbSocket = require('./sockets/bulb'),
     circuitSocket = require('./sockets/circuit');
@@ -343,7 +343,6 @@ function togglePower(){
   }
 };
 
-socket.on('codebender:toggle', toggler);
 socket.on('foo', function(data){
   var target = document.querySelector('#bulb-response');
   if(!JSON.parse(data).ok === 'true'){
@@ -516,7 +515,7 @@ function create(){
 /*eslint-enable */
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./components/battery":1,"./components/bulb":2,"./components/circuit":3,"./components/electron":4,"./components/resistor":5,"./components/text":6,"./components/wire":7,"./sockets/bulb":9,"./sockets/chat":10,"./sockets/circuit":11,"./sockets/socket":12,"./ui/chat":13,"./ui/form":14,"./ui/toggler":15}],9:[function(require,module,exports){
+},{"./components/battery":1,"./components/bulb":2,"./components/circuit":3,"./components/electron":4,"./components/resistor":5,"./components/text":6,"./components/wire":7,"./sockets/bulb":9,"./sockets/chat":10,"./sockets/circuit":11,"./sockets/socket":12,"./ui/chat":13,"./ui/form":14,"./ui/tabs":15}],9:[function(require,module,exports){
 module.exports = require('socket.io-client')(window.location.origin + '/bulb');
 
 },{"socket.io-client":16}],10:[function(require,module,exports){
@@ -604,41 +603,27 @@ submitButton.onclick = function(event){
 
 module.exports = submitButton;
 },{}],15:[function(require,module,exports){
-var toggler = document.querySelector('.toggle');
-var iframe = document.querySelector('iframe');
-var socket;
+var tabs = [].slice.call(document.querySelectorAll('.tabs li'));
 
-  var tabs = [].slice.call(document.querySelectorAll('.tabs li'));
+tabs.forEach(function(tab){
+  tab.addEventListener('click', function(e){
+    var selectedClass = e.target.innerHTML.toLowerCase().trim();
+    var targetSection = document.querySelector('.tab-content.' + selectedClass);
+    var sections = [].slice.call(document.querySelectorAll('.tab-content'));
 
-  tabs.forEach(function(tab){
-    tab.addEventListener('click', function(e){
-      var selectedClass = e.target.innerHTML.toLowerCase().trim();
-      var targetSection = document.querySelector('.tab-content.' + selectedClass);
-      var sections = [].slice.call(document.querySelectorAll('.tab-content'));
-
-      tabs.forEach(function(tab){
-        tab.classList.remove('active');
-      });
-      e.target.classList.add('active');
-
-      sections.forEach(function(section){
-        section.classList.add('parked');
-      });
-      targetSection.classList.remove('parked');
+    tabs.forEach(function(tab){
+      tab.classList.remove('active');
     });
+    e.target.classList.add('active');
+
+    sections.forEach(function(section){
+      section.classList.add('parked');
+    });
+    targetSection.classList.remove('parked');
   });
+});
 
-// deprecated
-var handler = function(){
-  var canvas = document.querySelector('canvas');
-  canvas.classList.toggle('hide');
-  iframe.classList.toggle('hide');
-};
-
-module.exports = function(s){
-  socket = s;
-  return handler;
-};
+module.exports = tabs;
 },{}],16:[function(require,module,exports){
 
 module.exports = require('./lib/');
