@@ -44,6 +44,7 @@ body
 
 .main-content
   center(fullWidth)
+  position: relative
 
 button,
 canvas
@@ -96,9 +97,12 @@ a
 .hide
   display: none !important
 
+.code div
+  width: 80rem
+
 iframe
-  span(1)
-  height: 510px
+  height: 32rem
+  width: 52.5rem
 
 .tabs
   cf(span(1))
@@ -123,7 +127,13 @@ iframe
   center(fullWidth)
   border: 0.2rem solid #333
   margin-top: 2rem
+  margin-left: 0
   padding: 1rem 2rem
+  position: absolute
+  transition: margin-left 1s
+
+  &.parked
+    margin-left: -200rem
 
 .chat
   bottom: -400px

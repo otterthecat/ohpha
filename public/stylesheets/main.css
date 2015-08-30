@@ -66,6 +66,7 @@ body {
   margin-left: auto;
   padding-left: 0;
   padding-right: 0;
+  position: relative;
 }
 .main-content:before,
 .main-content:after {
@@ -177,23 +178,12 @@ a {
 .hide {
   display: none !important;
 }
+.code div {
+  width: 80rem;
+}
 iframe {
-  *zoom: 1;
-  float: left;
-  clear: none;
-  text-align: inherit;
-  width: 100%;
-  margin-left: 0%;
-  margin-right: 0%;
-  height: 510px;
-}
-iframe:before,
-iframe:after {
-  content: '';
-  display: table;
-}
-iframe:after {
-  clear: both;
+  height: 32rem;
+  width: 52.5rem;
 }
 .tabs {
   *zoom: 1;
@@ -260,7 +250,10 @@ iframe:after {
   padding-right: 0;
   border: 0.2rem solid #333;
   margin-top: 2rem;
+  margin-left: 0;
   padding: 1rem 2rem;
+  position: absolute;
+  transition: margin-left 1s;
 }
 .tab-content:before,
 .tab-content:after {
@@ -269,6 +262,9 @@ iframe:after {
 }
 .tab-content:after {
   clear: both;
+}
+.tab-content.parked {
+  margin-left: -200rem;
 }
 .chat {
   bottom: -400px;
