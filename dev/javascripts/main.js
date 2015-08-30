@@ -128,7 +128,7 @@ function togglePower(){
 socket.on('codebender:toggle', toggler);
 socket.on('foo', function(data){
   var target = document.querySelector('#bulb-response');
-  if(!data.ok){
+  if(!JSON.parse(data).ok === 'true'){
     target.innerHTML = "Failed to update bulb";
   }
   else {
