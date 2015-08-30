@@ -7,12 +7,14 @@ block content
     span#bulb-response
     span#user-count
 
-  div.main-content
+
+  nav
     ul.tabs
       li.intro.active Intro
       li.toggle.create Create
       li.code Code
 
+  div.main-content
     section.tab-content.intro
       form
         label(for='current') What is the current (I = V / R)?
@@ -24,7 +26,7 @@ block content
         label(for='resistance') What is the resistance (R = V / I)?
           input(type='text' name='resistance')
 
-        button(type='submit') Submit
+        button(type='submit') Submit Answers
 
       div#interactive
 

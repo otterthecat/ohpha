@@ -29,15 +29,16 @@ body {
   font-size: 16px;
 }
 #bulb-response:before {
-  content: "Status:";
+  content: "Status: ";
 }
 #user-count:before {
-  content: "User Count:";
+  content: "User Count: ";
 }
 .main-header {
   *zoom: 1;
   background: #333;
   color: #ddd;
+  padding: 0 2rem;
 }
 .main-header:before,
 .main-header:after {
@@ -46,6 +47,14 @@ body {
 }
 .main-header:after {
   clear: both;
+}
+.main-header h1 {
+  margin: 0;
+  padding: 0;
+}
+.main-header span {
+  float: right;
+  padding: 0 1rem;
 }
 .main-content {
   *zoom: 1;
@@ -71,12 +80,16 @@ canvas {
   border: 1px solid #333;
 }
 button {
-  background-color: #ffbe0a;
+  background: #d6d6d6;
   border-radius: 5px;
   cursor: pointer;
 }
+button:hover {
+  background: #ccc;
+}
 button[type="submit"] {
   clear: both;
+  width: 100%;
 }
 canvas {
   *zoom: 1;
@@ -134,7 +147,7 @@ input {
   width: 100%;
   margin-left: 0%;
   margin-right: 0%;
-  padding: 10px 0;
+  padding: 0.5rem 0;
 }
 input:before,
 input:after {
@@ -184,6 +197,7 @@ iframe:after {
 }
 .tabs {
   *zoom: 1;
+  background: #999;
   margin: 0;
   padding: 0;
   list-style-type: none;
@@ -204,6 +218,7 @@ iframe:after {
   width: 33.33333333333333%;
   margin-left: 0%;
   margin-right: 0%;
+  cursor: pointer;
   padding: 1rem;
   text-align: center;
 }
@@ -229,6 +244,10 @@ iframe:after {
 .tabs li:last-of-type:after {
   clear: both;
 }
+.tabs li:hover {
+  background: #666;
+  color: #c7c7c7;
+}
 .tab-content {
   *zoom: 1;
   width: auto;
@@ -240,7 +259,8 @@ iframe:after {
   padding-left: 0;
   padding-right: 0;
   border: 0.2rem solid #333;
-  padding: 2rem;
+  margin-top: 2rem;
+  padding: 1rem 2rem;
 }
 .tab-content:before,
 .tab-content:after {

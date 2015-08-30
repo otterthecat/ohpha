@@ -23,15 +23,24 @@ body
   font-size: 16px
 
 #bulb-response:before
-  content: "Status:"
+  content: "Status: "
 
 #user-count:before
-  content: "User Count:"
+  content: "User Count: "
 
 .main-header
   cf(span(1))
   background: darkColor
   color: lightColor
+  padding: 0 2rem
+
+  h1
+    margin: 0
+    padding: 0
+
+  span
+    float: right
+    padding: 0 1rem
 
 .main-content
   center(fullWidth)
@@ -41,12 +50,16 @@ canvas
   border: 1px solid #333
 
 button
-  background-color: #FFBE0A
+  background: lighten(darkColor, 80%)
   border-radius: 5px
   cursor: pointer
 
+  &:hover
+    background: lighten(darkColor, 75%)
+
   &[type="submit"]
     clear: both
+    width: 100%
 
 canvas
   center(100%)
@@ -60,7 +73,7 @@ label
 
 input
   span(1)
-  padding: 10px 0
+  padding: 0.5rem 0
 
 input,
 button
@@ -89,21 +102,28 @@ iframe
 
 .tabs
   cf(span(1))
+  background: lighten(darkColor, 50%)
   margin: 0
   padding: 0
   list-style-type: none
 
   li
     col(1/3, gutter: 0)
+    cursor: pointer
     padding: 1rem
     text-align: center;
     &:last-of-type
       cf(col(1/3, gutter: 0))
 
+    &:hover
+      background: lighten(darkColor, 25%)
+      color: darken(lightColor, 10%);
+
 .tab-content
   center(fullWidth)
   border: 0.2rem solid #333
-  padding: 2rem
+  margin-top: 2rem
+  padding: 1rem 2rem
 
 .chat
   bottom: -400px

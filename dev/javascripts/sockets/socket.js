@@ -1,7 +1,7 @@
 var socket = require('socket.io-client')();
 
 var updateUserCount = function(count){
-  document.querySelector("#user-count").innerHTML = 'Connected Users: ' + count;
+  document.querySelector("#user-count").innerHTML = count;
 };
 
 socket.on('connection:increment', function(count){

@@ -529,7 +529,7 @@ module.exports = require('socket.io-client')('http://localhost:3000/circuit');
 var socket = require('socket.io-client')();
 
 var updateUserCount = function(count){
-  document.querySelector("#user-count").innerHTML = 'Connected Users: ' + count;
+  document.querySelector("#user-count").innerHTML = count;
 };
 
 socket.on('connection:increment', function(count){
