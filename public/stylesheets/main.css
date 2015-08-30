@@ -263,6 +263,9 @@ iframe {
 .tab-content:after {
   clear: both;
 }
+.tab-content.create span {
+  padding: 0 0.5rem;
+}
 .tab-content.parked {
   margin-left: -200rem;
 }

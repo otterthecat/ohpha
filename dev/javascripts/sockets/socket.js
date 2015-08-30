@@ -13,7 +13,8 @@ socket.on('connection:decrement', function(count){
 });
 
 socket.on('pullup:update', function(data){
-  console.log("PULLUP DATA ", data);
+  var pullupResult = document.querySelector('.circuit-result');
+  pullupResult.innerHTML = JSON.parse(data).data === 'true' ? "Connected!" : "Please complete Circuit";
 });
 
 module.exports = socket;
