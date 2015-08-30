@@ -616,6 +616,11 @@ var socket;
       var targetSection = document.querySelector('.tab-content.' + selectedClass);
       var sections = [].slice.call(document.querySelectorAll('.tab-content'));
 
+      tabs.forEach(function(tab){
+        tab.classList.remove('active');
+      });
+      e.target.classList.add('active');
+
       sections.forEach(function(section){
         section.classList.add('parked');
       });
@@ -623,25 +628,13 @@ var socket;
     });
   });
 
-
+// deprecated
 var handler = function(){
   var canvas = document.querySelector('canvas');
   canvas.classList.toggle('hide');
   iframe.classList.toggle('hide');
-
-/*
-  if(!iframe.classList.contains('hide')){
-    iframe.src = 'https://codebender.cc/embed/sketch:131324';
-  } else {
-    iframe.src = '';
-  }
-*/
 };
-/*
-toggler.addEventListener('click', function(){
-  socket.emit('toggler:clicked');
-});
-*/
+
 module.exports = function(s){
   socket = s;
   return handler;

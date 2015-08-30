@@ -234,6 +234,7 @@ iframe {
 .tabs li:last-of-type:after {
   clear: both;
 }
+.tabs li.active,
 .tabs li:hover {
   background: #666;
   color: #c7c7c7;
