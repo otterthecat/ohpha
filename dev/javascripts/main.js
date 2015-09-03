@@ -28,33 +28,55 @@ var game = new Phaser.Game(800, 420, Phaser.CANVAS, 'interactive', {
 });
 
 function preload(){
-  game.stage.backgroundColor = '#fff';
+  game.stage.backgroundColor = '#eee';
   game.load.image('shard', 'images/circuit-stuff/shard.jpg');
   game.load.image('button', 'images/circuit-stuff/green-button.png');
   game.load.image('bulb', 'images/circuit-stuff/bulb.png');
+  game.load.image('led', 'images/circuit-stuff/redLed.png');
+  game.load.image('led-glow', 'images/circuit-stuff/redLedGlow.png');
   game.load.image('electron', 'images/circuit-stuff/electron.png');
   game.load.image('nineVolt', 'images/circuit-stuff/nineVolt.png');
-  game.load.image('resistor', 'images/circuit-stuff/resistor.png');
+  game.load.image('resistor', 'images/circuit-stuff/trimmed-resistor.png');
 };
 
 function createBattery(){
+  var shadow = game.add.sprite(game.world.centerX, game.world.centerY, 'nineVolt');
+  shadow.anchor.set(0.5);
+  shadow.tint = 0x000000;
+  shadow.alpha = 0.6;
+  shadow.x = 42;
+  shadow.y = 157;
+  shadow.scale = {
+    x: 0.55,
+    y: 0.55
+  }
+
   nineVolt = new Battery(Phaser, {
     'game': game,
     'key': 'nineVolt',
     'x': 40,
-    'y': 160
+    'y': 155
   });
   game.add.existing(nineVolt);
   nineVolt.anchor.set(0.5);
+  nineVolt.scale.x = 0.55;
+  nineVolt.scale.y = 0.55;
 };
 
 function createBulb(){
+  var shadow = game.add.sprite(game.world.centerX, game.world.centerY, 'led');
+  shadow.anchor.set(0.5);
+  shadow.tint = 0x000000;
+  shadow.alpha = 0.6;
+  shadow.x = 202;
+  shadow.y = 242;
+
   bulb = new Bulb(Phaser,{
     'game': game,
-    'key': 'bulb',
+    'key': 'led',
     'emitterAsset': 'shard',
-    'x': 300,
-    'y': 140
+    'x': 200,
+    'y': 240
   });
   game.add.existing(bulb);
   bulb.anchor.set(0.5);
@@ -113,6 +135,10 @@ function createResistor(){
   });
   game.add.existing(resistor);
   resistor.anchor.set(0.5);
+  resistor.scale = {
+    x: 0.55,
+    y: 0.55
+  }
 };
 
 function togglePower(){
@@ -247,13 +273,17 @@ function create(){
   var addResistor = function(){
     var newResistor = new Resistor(Phaser, {
       'game': game,
-      'x': 150 + (circuit.resistors.length * 50),
+      'x': 150 + (circuit.resistors.length * 52),
       'y': 20,
       'key': 'resistor'
     });
     circuit.addResistor(newResistor);
     game.add.existing(newResistor);
     newResistor.anchor.set(0.5);
+    newResistor.scale = {
+      x: 0.55,
+      y: 0.55
+    }
   };
 
   var resistorButton = game.add.button(650, 40, 'button', function(){
