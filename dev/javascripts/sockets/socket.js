@@ -1,4 +1,4 @@
-var socket = require('socket.io-client')(3000);
+var socket = require('socket.io-client')();
 
 var updateUserCount = function(count){
   document.querySelector("#user-count").innerHTML = count;
