@@ -178,9 +178,6 @@ a {
 .hide {
   display: none !important;
 }
-.code div {
-  width: 80rem;
-}
 iframe {
   height: 32rem;
   width: 52.5rem;
