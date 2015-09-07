@@ -224,7 +224,7 @@ function create(){
   bulb.onShine.add(function(brightness){
     var stats = circuit.getStats();
     textCurrent.setText('Current is: ' + parseFloat(stats.current).toFixed(2));
-    textVoltage.setText("Voltage is: " + stats.voltage);
+    textVoltage.setText("Voltage is: " + parseFloat(stats.voltage).toFixed(2));
     textResistance.setText("Resistance is: " + parseFloat(stats.resistance).toFixed(2));
     textWatts.setText('Watts is: ' + parseFloat(stats.watts).toFixed(2));
     bulbSocket.emit('shine', brightness);
@@ -297,10 +297,14 @@ function create(){
 
   circuitSocket.on('resistor:added', function(){
     addResistor();
+    uiForm.reset();
+    uiForm.clearValidation();
   });
 
   circuitSocket.on('resistor:removed', function(){
     circuit.removeResistor();
+    uiForm.reset();
+    uiForm.clearValidation();
   });
 
   var plus = new Txt(Phaser, {
