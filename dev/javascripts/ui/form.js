@@ -15,14 +15,14 @@ submitButton.onclick = function(event){
     voltageInput.classList.add('correct');
   }
 
-  if(currentInput.value !== circuit.getStats().current.toString()){
+  if(currentInput.value !== parseFloat(circuit.getStats().current).toFixed(2).toString()){
     currentInput.classList.add('error');
   } else {
     currentInput.classList.remove('error');
     currentInput.classList.add('correct');
   }
 
-  if(resistanceInput.value !== circuit.getStats().resistance.toString()){
+  if(resistanceInput.value !== parseFloat(circuit.getStats().resistance).toFixed(2).toString()){
     resistanceInput.classList.add('error');
   } else {
     resistanceInput.classList.remove('error');

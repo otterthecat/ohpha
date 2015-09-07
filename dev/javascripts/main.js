@@ -223,10 +223,10 @@ function create(){
   });
   bulb.onShine.add(function(brightness){
     var stats = circuit.getStats();
-    textCurrent.setText('Current is: ' + stats.current);
+    textCurrent.setText('Current is: ' + parseFloat(stats.current).toFixed(2));
     textVoltage.setText("Voltage is: " + stats.voltage);
-    textResistance.setText("Resistance is: " + stats.resistance);
-    textWatts.setText('Watts is: ' + stats.watts);
+    textResistance.setText("Resistance is: " + parseFloat(stats.resistance).toFixed(2));
+    textWatts.setText('Watts is: ' + parseFloat(stats.watts).toFixed(2));
     bulbSocket.emit('shine', brightness);
   });
   bulb.onNoPower.add(function(){
