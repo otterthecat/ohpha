@@ -9,7 +9,7 @@ var Phaser = require('Phaser'),
     createWire = require('./components/wire'),
     uiForm = require('./ui/form'),
     socket = require('./sockets/socket'),
-    toggler = require('./ui/toggler')(socket),
+    tabs = require('./ui/tabs'),
     chat = require('./ui/chat')(require('./sockets/chat')),
     bulbSocket = require('./sockets/bulb'),
     circuitSocket = require('./sockets/circuit');
@@ -151,7 +151,6 @@ function togglePower(){
   }
 };
 
-socket.on('codebender:toggle', toggler);
 socket.on('foo', function(data){
   var target = document.querySelector('#bulb-response');
   if(!JSON.parse(data).ok === 'true'){
