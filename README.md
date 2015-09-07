@@ -6,5 +6,5 @@ Hey, look! It's a project!
 2. `cd` into repo
 3. `npm install`
 4. `npm start`
-5. go to`localhost:3000`
+5. go to`localhost:3000/poc`
 6. Enjoy
