@@ -9,7 +9,7 @@ var complexityOpts = {
 module.exports = {
 
     browserSync: {
-        proxy: 'localhost:3000'
+        proxy: 'localhost:3000/poc'
     },
 
     plato: {
