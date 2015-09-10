@@ -52,6 +52,9 @@ module.exports = function(options){
   options.game.add.existing(bulb);
   bulb.anchor.set(0.5);
 
+  bulb.inputEnabled = true;
+  bulb.input.enableDrag();
+
   return bulb;
 };
 /*eslint-enable */

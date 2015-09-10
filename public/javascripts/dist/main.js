@@ -17,6 +17,9 @@ module.exports = function(options){
   options.game.add.existing(battery);
   battery.anchor.set(0.5);
 
+  battery.inputEnabled = true;
+  battery.input.enableDrag();
+
   return battery;
 }
 /*eslint-enable */
@@ -76,6 +79,9 @@ module.exports = function(options){
   var bulb = new Bulb(options);
   options.game.add.existing(bulb);
   bulb.anchor.set(0.5);
+
+  bulb.inputEnabled = true;
+  bulb.input.enableDrag();
 
   return bulb;
 };
@@ -231,6 +237,9 @@ module.exports = function(options){
   options.game.add.existing(resistor);
   resistor.anchor.set(0.5);
 
+  resistor.inputEnabled = true;
+  resistor.input.enableDrag();
+
   return resistor;
 };
 /*eslint-enable */
@@ -330,6 +339,19 @@ function createBattery(){
   });
   nineVolt.scale.x = 0.55;
   nineVolt.scale.y = 0.55;
+
+  nineVolt.events.onDragStart.add(function(){console.log('STARTING DRAG');});
+  nineVolt.events.onDragUpdate.add(function(sprite, pointer, dragX, dragY, snapPoint){
+    bulbSocket.emit('drag:battery', {
+      "x": dragX,
+      "y": dragY
+    })
+  });
+
+  bulbSocket.on('dragged:battery', function(coords){
+    nineVolt.x = coords.x;
+    nineVolt.y = coords.y;
+  });
 };
 
 function createBulb(){
@@ -346,6 +368,19 @@ function createBulb(){
     'emitterAsset': 'shard',
     'x': 200,
     'y': 240
+  });
+
+  bulb.events.onDragStart.add(function(){console.log('STARTING DRAG');});
+  bulb.events.onDragUpdate.add(function(sprite, pointer, dragX, dragY, snapPoint){
+    bulbSocket.emit('drag', {
+      "x": dragX,
+      "y": dragY
+    })
+  });
+
+  bulbSocket.on('dragged', function(coords){
+    bulb.x = coords.x;
+    bulb.y = coords.y;
   });
 };
 
@@ -390,6 +425,18 @@ function createSecondElec(num){
 };
 
 function createResistor(){
+
+  var shadow = game.add.sprite(game.world.centerX, game.world.centerY, 'resistor');
+  shadow.anchor.set(0.5);
+  shadow.tint = 0x000000;
+  shadow.alpha = 0.6;
+  shadow.x = 152;
+  shadow.y = 22;
+  shadow.scale = {
+    x: 0.55,
+    y: 0.55
+  }
+
   resistor = Resistor({
     'game': game,
     'x': 150,
@@ -401,6 +448,19 @@ function createResistor(){
     x: 0.55,
     y: 0.55
   }
+
+  resistor.events.onDragStart.add(function(){console.log('STARTING DRAG');});
+  resistor.events.onDragUpdate.add(function(sprite, pointer, dragX, dragY, snapPoint){
+    bulbSocket.emit('drag:resistor', {
+      "x": dragX,
+      "y": dragY
+    })
+  });
+
+  bulbSocket.on('dragged:resistor', function(coords){
+    resistor.x = coords.x;
+    resistor.y = coords.y;
+  });
 };
 
 function togglePower(){

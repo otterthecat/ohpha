@@ -15,6 +15,9 @@ module.exports = function(options){
   options.game.add.existing(battery);
   battery.anchor.set(0.5);
 
+  battery.inputEnabled = true;
+  battery.input.enableDrag();
+
   return battery;
 }
 /*eslint-enable */

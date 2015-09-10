@@ -16,6 +16,9 @@ module.exports = function(options){
   options.game.add.existing(resistor);
   resistor.anchor.set(0.5);
 
+  resistor.inputEnabled = true;
+  resistor.input.enableDrag();
+
   return resistor;
 };
 /*eslint-enable */
