@@ -1,5 +1,7 @@
 /*eslint-disable */
-var Circuit = function(Phaser){
+var Phaser = require('Phaser');
+
+var Circuit = function(){
   Phaser.Signal.call(this);
   this.batteries = [];
   this.resistors = [];
@@ -96,5 +98,7 @@ Circuit.prototype.getStats = function(){
   };
 };
 
-module.exports = Circuit;
+module.exports = function(){
+  return new Circuit();
+}
 /*eslint-enable */

@@ -1,5 +1,7 @@
 /*eslint-disable */
-var Bulb = function(Phaser, options){
+var Phaser = require('Phaser');
+
+var Bulb = function(options){
 
   Phaser.Sprite.call(this, options.game, options.x, options.y, options.key, options.frame);
 
@@ -45,5 +47,11 @@ Bulb.prototype.explode = function(){
   this.onExplode.dispatch(this);
 };
 
-module.exports = Bulb;
+module.exports = function(options){
+  var bulb = new Bulb(options);
+  options.game.add.existing(bulb);
+  bulb.anchor.set(0.5);
+
+  return bulb;
+};
 /*eslint-enable */

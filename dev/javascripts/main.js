@@ -51,14 +51,12 @@ function createBattery(){
     y: 0.55
   }
 
-  nineVolt = new Battery(Phaser, {
+  nineVolt = Battery({
     'game': game,
     'key': 'nineVolt',
     'x': 40,
     'y': 155
   });
-  game.add.existing(nineVolt);
-  nineVolt.anchor.set(0.5);
   nineVolt.scale.x = 0.55;
   nineVolt.scale.y = 0.55;
 };
@@ -71,26 +69,22 @@ function createBulb(){
   shadow.x = 202;
   shadow.y = 242;
 
-  bulb = new Bulb(Phaser,{
+  bulb = Bulb({
     'game': game,
     'key': 'led',
     'emitterAsset': 'shard',
     'x': 200,
     'y': 240
   });
-  game.add.existing(bulb);
-  bulb.anchor.set(0.5);
 };
 
 function createFirstElec(){
-  var electron = new Electron(Phaser, {
+  var electron = new Electron({
     'game': game,
     'x': 20,
     'y': 100,
     'key': 'electron'
   });
-  game.add.existing(electron);
-  electron.anchor.set(0.5);
 
   electronTween1 = game.add.tween(electron).to({y: 20}, electronSpeed)
     .to({x: 300}, electronSpeed * 1.5)
@@ -105,14 +99,12 @@ function createFirstElec(){
 };
 
 function createSecondElec(num){
-  var electron = new Electron(Phaser, {
+  var electron = new Electron({
     'game': game,
     'x': 300,
     'y': 300,
     'key': 'electron'
   });
-  game.add.existing(electron);
-  electron.anchor.set(0.5);
 
   electronTween2 = game.add.tween(electron).to({x: 120}, electronSpeed * 1.5)
     .to({y: 100}, electronSpeed * 1.5)
@@ -127,14 +119,13 @@ function createSecondElec(num){
 };
 
 function createResistor(){
-  resistor = new Resistor(Phaser, {
+  resistor = Resistor({
     'game': game,
     'x': 150,
     'y': 20,
     'key': 'resistor'
   });
-  game.add.existing(resistor);
-  resistor.anchor.set(0.5);
+
   resistor.scale = {
     x: 0.55,
     y: 0.55
@@ -186,28 +177,28 @@ function create(){
   var button = game.add.button(700, 150, 'button', togglePower);
   button.anchor.set(0.5);
 
-  var textVoltage = new Txt(Phaser, {
+  var textVoltage = Txt({
     'game': game,
     'x': game.world.centerX,
     'y': 330,
     'text': "Voltage is: 0"
   });
 
-  var textResistance = new Txt(Phaser, {
+  var textResistance = Txt({
     'game': game,
     'x': game.world.centerX,
     'y': 360,
     'text': "Resistance is: 0"
   });
 
-  var textCurrent = new Txt(Phaser, {
+  var textCurrent = Txt({
     'game': game,
     'x': game.world.centerX,
     'y': 300,
     'text': 'Current is: 0'
   });
 
-  var textWatts = new Txt(Phaser, {
+  var textWatts = Txt({
     'game': game,
     'x': game.world.centerX,
     'y': 390,
@@ -237,7 +228,7 @@ function create(){
     bulbSocket.emit('off');
   });
 
-  circuit = new Circuit(Phaser);
+  circuit = Circuit();
   circuit.addBattery(nineVolt)
     .addResistor(resistor)
     .circuit_on.add(function(){
@@ -270,19 +261,19 @@ function create(){
   window.circuit = circuit;
 
   var addResistor = function(){
-    var newResistor = new Resistor(Phaser, {
+    var newResistor = Resistor({
       'game': game,
       'x': 150 + (circuit.resistors.length * 52),
       'y': 20,
       'key': 'resistor'
     });
-    circuit.addResistor(newResistor);
-    game.add.existing(newResistor);
-    newResistor.anchor.set(0.5);
+
     newResistor.scale = {
       x: 0.55,
       y: 0.55
     }
+
+    circuit.addResistor(newResistor);
   };
 
   var resistorButton = game.add.button(650, 40, 'button', function(){
@@ -307,21 +298,21 @@ function create(){
     uiForm.clearValidation();
   });
 
-  var plus = new Txt(Phaser, {
+  var plus = Txt({
     'game': game,
     'x': 642,
     'y': 28,
     'text': '+'
   });
 
-  var minus = new Txt(Phaser, {
+  var minus = Txt({
     'game': game,
     'x': 745,
     'y': 28,
     'text': '-'
   });
 
-  var power = new Txt(Phaser, {
+  var power = Txt({
     'game': game,
     'x': 660,
     'y': 140,
