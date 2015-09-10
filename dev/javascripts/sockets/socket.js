@@ -1,5 +1,9 @@
 var socket = require('socket.io-client')();
 
+window.addEventListener('beforeunload', function(){
+  socket.emit('disconnect');
+});
+
 var updateUserCount = function(count){
   document.querySelector("#user-count").innerHTML = count;
 };

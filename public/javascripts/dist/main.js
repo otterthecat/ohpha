@@ -561,6 +561,10 @@ module.exports = require('socket.io-client')(window.location.origin + '/circuit'
 },{"socket.io-client":16}],12:[function(require,module,exports){
 var socket = require('socket.io-client')();
 
+window.addEventListener('beforeunload', function(){
+  socket.emit('disconnect');
+});
+
 var updateUserCount = function(count){
   document.querySelector("#user-count").innerHTML = count;
 };
