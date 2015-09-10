@@ -550,16 +550,16 @@ function create(){
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./components/battery":1,"./components/bulb":2,"./components/circuit":3,"./components/electron":4,"./components/resistor":5,"./components/text":6,"./components/wire":7,"./sockets/bulb":9,"./sockets/chat":10,"./sockets/circuit":11,"./sockets/socket":12,"./ui/chat":13,"./ui/form":14,"./ui/tabs":15}],9:[function(require,module,exports){
-module.exports = require('socket.io-client')(window.location.origin + '/bulb');
+module.exports = require('socket.io-client')(window.location.hostname + ':4000/bulb');
 
 },{"socket.io-client":16}],10:[function(require,module,exports){
-module.exports = require('socket.io-client')(window.location.origin + '/chat');
+module.exports = require('socket.io-client')(window.location.hostname + ':4000/chat');
 
 },{"socket.io-client":16}],11:[function(require,module,exports){
-module.exports = require('socket.io-client')(window.location.origin + '/circuit');
+module.exports = require('socket.io-client')(window.location.hostname + ':4000/circuit');
 
 },{"socket.io-client":16}],12:[function(require,module,exports){
-var socket = require('socket.io-client')();
+var socket = require('socket.io-client')(window.location.hostname + ':4000');
 
 window.addEventListener('beforeunload', function(){
   socket.close();

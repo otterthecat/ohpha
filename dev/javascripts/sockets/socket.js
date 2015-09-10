@@ -1,4 +1,4 @@
-var socket = require('socket.io-client')();
+var socket = require('socket.io-client')(window.location.hostname + ':4000');
 
 window.addEventListener('beforeunload', function(){
   socket.close();
