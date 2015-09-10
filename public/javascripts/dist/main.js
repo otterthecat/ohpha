@@ -559,7 +559,7 @@ module.exports = require('socket.io-client')(window.location.origin + '/chat');
 module.exports = require('socket.io-client')(window.location.origin + '/circuit');
 
 },{"socket.io-client":16}],12:[function(require,module,exports){
-var socket = require('socket.io-client')(window.location.origin);
+var socket = require('socket.io-client')();
 
 window.addEventListener('beforeunload', function(){
   socket.close();

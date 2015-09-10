@@ -1,4 +1,4 @@
-var socket = require('socket.io-client')(window.location.origin);
+var socket = require('socket.io-client')();
 
 window.addEventListener('beforeunload', function(){
   socket.close();
