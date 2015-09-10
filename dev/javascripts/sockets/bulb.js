@@ -1,1 +1,1 @@
-module.exports = require('socket.io-client')(window.location.hostname + ':4000/bulb');
+module.exports = require('socket.io-client')(window.location.origin + '/bulb');
