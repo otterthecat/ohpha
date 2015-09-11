@@ -11,3 +11,11 @@ exports.dragStop = function(options){
     }
   }
 };
+
+
+exports.doIfAligned = function(bulb, battery, resistor, callback){
+  if(bulb.x === 200 && bulb.y === 240 && battery.x === 40 && battery.y === 155 && resistor.x === 150 && resistor.y === 20){
+      console.log("THEY ARE ALL READY");
+      callback();
+  }
+};

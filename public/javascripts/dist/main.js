@@ -301,6 +301,14 @@ exports.dragStop = function(options){
     }
   }
 };
+
+
+exports.doIfAligned = function(bulb, battery, resistor, callback){
+  if(bulb.x === 200 && bulb.y === 240 && battery.x === 40 && battery.y === 155 && resistor.x === 150 && resistor.y === 20){
+      console.log("THEY ARE ALL READY");
+      callback();
+  }
+};
 },{}],10:[function(require,module,exports){
 (function (global){
 /*eslint-disable */
@@ -366,6 +374,9 @@ function createBattery(){
     "y": 155,
     "callback": function(data){
       bulbSocket.emit('snap:battery', data);
+      helpers.doIfAligned(bulb, nineVolt, resistor, function(){
+        console.log("BOOM");
+      });
     }
   }));
 
@@ -377,6 +388,9 @@ function createBattery(){
   bulbSocket.on('snapped:battery', function(coords){
     nineVolt.x = coords.x;
     nineVolt.y = coords.y;
+    helpers.doIfAligned(bulb, nineVolt, resistor, function(){
+      console.log("BOOM");
+    });
   });
 };
 
@@ -407,6 +421,9 @@ function createBulb(){
     "y": 240,
     "callback": function(data){
       bulbSocket.emit('snap:bulb', data);
+      helpers.doIfAligned(bulb, nineVolt, resistor, function(){
+        console.log("BOOM");
+      });
     }
   }));
 
@@ -418,6 +435,9 @@ function createBulb(){
   bulbSocket.on('snapped:bulb', function(coords){
     bulb.x = coords.x;
     bulb.y = coords.y;
+    helpers.doIfAligned(bulb, nineVolt, resistor, function(){
+      console.log("BOOM");
+    });
   });
 };
 
@@ -496,7 +516,10 @@ function createResistor(){
     "x": 150,
     "y": 20,
     "callback": function(data){
-      bulbSocket.emit('snap:resistor', data)
+      bulbSocket.emit('snap:resistor', data);
+      helpers.doIfAligned(bulb, nineVolt, resistor, function(){
+        console.log("BOOM");
+      });
     }
   }));
 
@@ -508,6 +531,9 @@ function createResistor(){
   bulbSocket.on('snapped:resistor', function(coords){
     resistor.x = coords.x;
     resistor.y = coords.y;
+    helpers.doIfAligned(bulb, nineVolt, resistor, function(){
+      console.log("BOOM");
+    });
   });
 };
 
