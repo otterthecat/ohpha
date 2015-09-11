@@ -349,8 +349,8 @@ function createBattery(){
   nineVolt = Battery({
     'game': game,
     'key': 'nineVolt',
-    'x': 40,
-    'y': 155
+    'x': 500,
+    'y': 220
   });
   nineVolt.scale.x = 0.55;
   nineVolt.scale.y = 0.55;
@@ -392,8 +392,8 @@ function createBulb(){
     'game': game,
     'key': 'led',
     'emitterAsset': 'shard',
-    'x': 200,
-    'y': 240
+    'x': 420,
+    'y': 90
   });
 
   bulb.events.onDragUpdate.add(function(sprite, pointer, dragX, dragY, snapPoint){
@@ -476,8 +476,8 @@ function createResistor(){
 
   resistor = Resistor({
     'game': game,
-    'x': 150,
-    'y': 20,
+    'x': 520,
+    'y': 100,
     'key': 'resistor'
   });
 
