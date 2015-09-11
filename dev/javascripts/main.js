@@ -29,6 +29,47 @@ var game = new Phaser.Game(800, 420, Phaser.CANVAS, 'interactive', {
     create: create
 });
 
+function createControls(){
+
+    nineVolt.input.draggable = false;
+    bulb.input.draggable = false;
+    resistor.input.draggable = false;
+
+    var button = game.add.button(700, 150, 'button', togglePower);
+    button.anchor.set(0.5);
+
+    var resistorButton = game.add.button(650, 40, 'button', function(){
+      circuitSocket.emit('resistor:update', 'add');
+    });
+    resistorButton.anchor.set(0.5);
+
+    var removeButton = game.add.button(750, 40, 'button', function(){
+      circuitSocket.emit('resistor:update', 'remove');
+    });
+    removeButton.anchor.set(0.5);
+
+    var plus = Txt({
+    'game': game,
+    'x': 642,
+    'y': 28,
+    'text': '+'
+  });
+
+  var minus = Txt({
+    'game': game,
+    'x': 745,
+    'y': 28,
+    'text': '-'
+  });
+
+  var power = Txt({
+    'game': game,
+    'x': 660,
+    'y': 140,
+    'text': 'power'
+  });
+}
+
 function createBattery(){
   var shadow = game.add.sprite(game.world.centerX, game.world.centerY, 'nineVolt');
   shadow.anchor.set(0.5);
@@ -62,28 +103,7 @@ function createBattery(){
     "callback": function(data){
       bulbSocket.emit('snap:battery', data);
       helpers.doIfAligned(bulb, nineVolt, resistor, function(){
-
-        var plus = Txt({
-          'game': game,
-          'x': 642,
-          'y': 28,
-          'text': '+'
-        });
-
-        var minus = Txt({
-          'game': game,
-          'x': 745,
-          'y': 28,
-          'text': '-'
-        });
-
-        var power = Txt({
-          'game': game,
-          'x': 660,
-          'y': 140,
-          'text': 'power'
-        });
-
+          createControls();
       });
     }
   }));
@@ -97,28 +117,7 @@ function createBattery(){
     nineVolt.x = coords.x;
     nineVolt.y = coords.y;
     helpers.doIfAligned(bulb, nineVolt, resistor, function(){
-
-    var plus = Txt({
-      'game': game,
-      'x': 642,
-      'y': 28,
-      'text': '+'
-    });
-
-    var minus = Txt({
-      'game': game,
-      'x': 745,
-      'y': 28,
-      'text': '-'
-    });
-
-    var power = Txt({
-      'game': game,
-      'x': 660,
-      'y': 140,
-      'text': 'power'
-    });
-
+      createControls();
     });
   });
 };
@@ -151,7 +150,7 @@ function createBulb(){
     "callback": function(data){
       bulbSocket.emit('snap:bulb', data);
       helpers.doIfAligned(bulb, nineVolt, resistor, function(){
-        console.log("BOOM");
+        createControls();
       });
     }
   }));
@@ -165,7 +164,7 @@ function createBulb(){
     bulb.x = coords.x;
     bulb.y = coords.y;
     helpers.doIfAligned(bulb, nineVolt, resistor, function(){
-      console.log("BOOM");
+      createControls();
     });
   });
 };
@@ -247,7 +246,7 @@ function createResistor(){
     "callback": function(data){
       bulbSocket.emit('snap:resistor', data);
       helpers.doIfAligned(bulb, nineVolt, resistor, function(){
-        console.log("BOOM");
+        createControls();
       });
     }
   }));
@@ -261,7 +260,7 @@ function createResistor(){
     resistor.x = coords.x;
     resistor.y = coords.y;
     helpers.doIfAligned(bulb, nineVolt, resistor, function(){
-      console.log("BOOM");
+      createControls();
     });
   });
 };
@@ -307,9 +306,6 @@ function create(){
   createBattery();
   createResistor();
   createBulb();
-
-  var button = game.add.button(700, 150, 'button', togglePower);
-  button.anchor.set(0.5);
 
   var textVoltage = Txt({
     'game': game,
@@ -409,16 +405,6 @@ function create(){
 
     circuit.addResistor(newResistor);
   };
-
-  var resistorButton = game.add.button(650, 40, 'button', function(){
-    circuitSocket.emit('resistor:update', 'add');
-  });
-  resistorButton.anchor.set(0.5);
-
-  var removeButton = game.add.button(750, 40, 'button', function(){
-    circuitSocket.emit('resistor:update', 'remove');
-  });
-  removeButton.anchor.set(0.5);
 
   circuitSocket.on('resistor:added', function(){
     addResistor();
