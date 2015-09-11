@@ -13,7 +13,9 @@ var Bulb = function(options){
   this.glow.alpha = 0;
   this.glow.drawCircle(200, 200, 100);
 
-  this.emitter = options.game.add.emitter(options.x, options.y - 60, 100);
+  // hardcoding for now, just to get the demo going, but should eventually
+  // be smart enough to apply emitter in correct position
+  this.emitter = options.game.add.emitter(200, 240 - 60, 100);
   this.emitter.makeParticles(options.emitterAsset);
   this.emitter.gravity = 50;
 
