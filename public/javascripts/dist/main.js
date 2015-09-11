@@ -375,7 +375,28 @@ function createBattery(){
     "callback": function(data){
       bulbSocket.emit('snap:battery', data);
       helpers.doIfAligned(bulb, nineVolt, resistor, function(){
-        console.log("BOOM");
+
+        var plus = Txt({
+          'game': game,
+          'x': 642,
+          'y': 28,
+          'text': '+'
+        });
+
+        var minus = Txt({
+          'game': game,
+          'x': 745,
+          'y': 28,
+          'text': '-'
+        });
+
+        var power = Txt({
+          'game': game,
+          'x': 660,
+          'y': 140,
+          'text': 'power'
+        });
+
       });
     }
   }));
@@ -389,7 +410,28 @@ function createBattery(){
     nineVolt.x = coords.x;
     nineVolt.y = coords.y;
     helpers.doIfAligned(bulb, nineVolt, resistor, function(){
-      console.log("BOOM");
+
+    var plus = Txt({
+      'game': game,
+      'x': 642,
+      'y': 28,
+      'text': '+'
+    });
+
+    var minus = Txt({
+      'game': game,
+      'x': 745,
+      'y': 28,
+      'text': '-'
+    });
+
+    var power = Txt({
+      'game': game,
+      'x': 660,
+      'y': 140,
+      'text': 'power'
+    });
+
     });
   });
 };
@@ -701,27 +743,6 @@ function create(){
     circuit.removeResistor();
     uiForm.reset();
     uiForm.clearValidation();
-  });
-
-  var plus = Txt({
-    'game': game,
-    'x': 642,
-    'y': 28,
-    'text': '+'
-  });
-
-  var minus = Txt({
-    'game': game,
-    'x': 745,
-    'y': 28,
-    'text': '-'
-  });
-
-  var power = Txt({
-    'game': game,
-    'x': 660,
-    'y': 140,
-    'text': 'power'
   });
 };
 /*eslint-enable */
