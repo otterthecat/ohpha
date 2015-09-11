@@ -14,6 +14,7 @@ var Phaser = require('Phaser'),
     chat = require('./ui/chat')(require('./sockets/chat')),
     bulbSocket = require('./sockets/bulb'),
     circuitSocket = require('./sockets/circuit');
+    helpers = require('./helpers');
 
 var bulb,
   electron,
@@ -49,15 +50,26 @@ function createBattery(){
   nineVolt.scale.x = 0.55;
   nineVolt.scale.y = 0.55;
 
-  nineVolt.events.onDragStart.add(function(){console.log('STARTING DRAG');});
   nineVolt.events.onDragUpdate.add(function(sprite, pointer, dragX, dragY, snapPoint){
     bulbSocket.emit('drag:battery', {
       "x": dragX,
       "y": dragY
     })
   });
+  nineVolt.events.onDragStop.add(helpers.dragStop({
+    "x": 40,
+    "y": 155,
+    "callback": function(data){
+      bulbSocket.emit('snap:battery', data);
+    }
+  }));
 
   bulbSocket.on('dragged:battery', function(coords){
+    nineVolt.x = coords.x;
+    nineVolt.y = coords.y;
+  });
+
+  bulbSocket.on('snapped:battery', function(coords){
     nineVolt.x = coords.x;
     nineVolt.y = coords.y;
   });
@@ -79,15 +91,26 @@ function createBulb(){
     'y': 240
   });
 
-  bulb.events.onDragStart.add(function(){console.log('STARTING DRAG');});
   bulb.events.onDragUpdate.add(function(sprite, pointer, dragX, dragY, snapPoint){
     bulbSocket.emit('drag', {
       "x": dragX,
       "y": dragY
     })
   });
+  bulb.events.onDragStop.add(helpers.dragStop({
+    "x": 200,
+    "y": 240,
+    "callback": function(data){
+      bulbSocket.emit('snap:bulb', data);
+    }
+  }));
 
   bulbSocket.on('dragged', function(coords){
+    bulb.x = coords.x;
+    bulb.y = coords.y;
+  });
+
+  bulbSocket.on('snapped:bulb', function(coords){
     bulb.x = coords.x;
     bulb.y = coords.y;
   });
@@ -158,15 +181,26 @@ function createResistor(){
     y: 0.55
   }
 
-  resistor.events.onDragStart.add(function(){console.log('STARTING DRAG');});
   resistor.events.onDragUpdate.add(function(sprite, pointer, dragX, dragY, snapPoint){
     bulbSocket.emit('drag:resistor', {
       "x": dragX,
       "y": dragY
     })
   });
+  resistor.events.onDragStop.add(helpers.dragStop({
+    "x": 150,
+    "y": 20,
+    "callback": function(data){
+      bulbSocket.emit('snap:resistor', data)
+    }
+  }));
 
   bulbSocket.on('dragged:resistor', function(coords){
+    resistor.x = coords.x;
+    resistor.y = coords.y;
+  });
+
+  bulbSocket.on('snapped:resistor', function(coords){
     resistor.x = coords.x;
     resistor.y = coords.y;
   });
