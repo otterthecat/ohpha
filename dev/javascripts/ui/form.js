@@ -31,5 +31,9 @@ module.exports = {
     voltageInput.classList.remove('error', 'correct');
     resistanceInput.classList.remove('error', 'correct');
     currentInput.classList.remove('error', 'correct');
+  },
+  "displayInitialValue": function(optionalString){
+    var val = optionalString || parseFloat(circuit.getStats().current).toFixed(2).toString();
+    currentInput.value = val;
   }
 };

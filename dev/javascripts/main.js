@@ -289,12 +289,14 @@ circuitSocket.on('power:on', function(){
   circuit.turnOn();
   electronTween1.resume();
   electronTween2.resume();
+  uiForm.displayInitialValue();
 });
 
 circuitSocket.on('power:off', function(){
   circuit.turnOff();
   electronTween1.pause();
   electronTween2.pause();
+  uiForm.displayInitialValue('');
 });
 
 function create(){
@@ -410,12 +412,14 @@ function create(){
     addResistor();
     uiForm.reset();
     uiForm.clearValidation();
+    uiForm.displayInitialValue();
   });
 
   circuitSocket.on('resistor:removed', function(){
     circuit.removeResistor();
     uiForm.reset();
     uiForm.clearValidation();
+    uiForm.displayInitialValue();
   });
 };
 /*eslint-enable */
