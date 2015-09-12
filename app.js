@@ -58,7 +58,6 @@ app.use(function(err, req, res, next) {
     });
 });
 
-app.set('port', config.port);
-
-var server = app.listen(app.get('port'), function() {});
+var server = require('http').Server(app);
 var io = Io(server);
+server.listen(config.port);
